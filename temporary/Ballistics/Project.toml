@@ -1,0 +1,12 @@
+name = "Ballistics"
+uuid = "88fb9bd1-538a-46aa-bd19-a89005204eba"
+authors = ["vishal <95016059+gyanantaran@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+
+[compat]
+DifferentialEquations = "7.15.0"
+Plots = "1.40.9"

@@ -1,0 +1,4 @@
+name = "EulersMethod"
+uuid = "9dab026c-b55d-4981-9211-fa1234c0d2c0"
+authors = ["vishal <95016059+gyanantaran@users.noreply.github.com>"]
+version = "0.1.0"
