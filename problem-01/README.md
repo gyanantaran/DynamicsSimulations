@@ -13,12 +13,12 @@ Any example of interest. Find a numerical solution. Graph it. Animate it. Try to
 make an interesting observation.
 
 ### System Description and Free Body Diagram
-I think I have chosen a just hard enough interesting problem. A spring pendulum consists of a mass $m$ attached to a spring of natural length $l_0$ and spring constant $k$. The system experiences:  
-- Spring force $F_s = -k(l-l_0)\hat{r}$  
-- Gravitational force $F_g = -mg\hat{j}$  
-- Damping force $F_d = -c\vec{v}$  
+I think I have chosen a just hard enough interesting problem. A spring pendulum consists of a mass $m$ attached to a spring of natural length $l_0$ and spring constant $k$. The system experiences:
+- Spring force $F_s = -k(l-l_0)\hat{r}$
+- Gravitational force $F_g = -mg\hat{j}$
+- Damping force $F_d = -c\vec{v}$
 
-![Freebody-diagram](freebody-diagram.png)
+![Freebody-diagram](../media/problem-01/freebody-diagram.png)
 
 ### Equations of Motion
 In Cartesian coordinates $(x,y)$, Newton's second law gives:
@@ -46,13 +46,13 @@ end
 
 ### Numerical Solution
 ```julia
-{{< include "../../SpringPendulum/src/SpringPendulum.jl" >}}
+{{< include "./SpringPendulum/src/SpringPendulum.jl" >}}
 ```
 
 ### Phase Space Trajectory
 Plot showing the system evolution in phase space.
 
-![Left: Trajectory plot. Right: Theta vs Time](trajectory_plot.png)
+![Left: Trajectory plot. Right: Theta vs Time](../media/problem-01/trajectory_plot.png)
 
 Code corresponding to this:
 
@@ -93,7 +93,7 @@ end
 ### Animation
 The following shows the animation for the solution system. The code corresponding to this animation:
 
-![Spring Pendulum Motion](sol_animation.gif)
+![Spring Pendulum Motion](../media/problem-01/sol_animation.gif)
 <!-- ![Spring Pendulum Motion](springpendulum_motion.mp4) -->
 
 ```julia
@@ -142,3 +142,4 @@ end
 4. Increasing `c` by a little has a drastic effect
 5. The problem was fun to simulate
 6. Julia was fun to code in: Libraries were ergonomic to use, DifferentialEquations.jl, and Makie.jl
+7. I noticed only much later that all of the trajectories for when resting length is zero are elipses.
