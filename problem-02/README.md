@@ -21,7 +21,7 @@ $$l_2: \quad \vec{\mathbf{r_C}} + \lambda_2 (\vec{\mathbf{r_D}}-\vec{\mathbf{r_C
 
 Hence, for two points on either lines, $p_1$, $p_2$:
 
-$$D(\lambda_1, \lambda_2) = \quad \left( \vec{\mathbf{p_2}} - \vec{\mathbf{p_1}} \right)$$
+$$D(\lambda_1, \lambda_2) = \quad \left|\left| \vec{\mathbf{p_2}} - \vec{\mathbf{p_1}} \right|\right|_n$$
 
 Which can be framed as an optimisation problem, minimum length, $\hat{d}$:
 
@@ -29,25 +29,22 @@ $$\hat{d} = \quad \min_{\lambda_1, \lambda_2} || \left( \vec{\mathbf{r_A}} + \la
 
 or,
 
-$$\hat{d} \leftarrow \quad \left\{ \nabla D(\lambda_1, \lambda_2) = 0 \right\}$$
-
-I have not written the symbolic code for this yet, but for 2D or 3D there must be some simplified expressions to this.
-
+$$\hat{d} \leftarrow D\left\{ \quad \nabla D(\lambda_1, \lambda_2) = 0 \quad\right\}$$
 ### b) Also find the end points of the shortest line segment
 
 The formulation above can be used:
 
-$$\left(\hat{\lambda_1}, \hat{\lambda_2}\right) \leftarrow \operatorname*{argmin}_{\lambda_1, \lambda_2} D(\lambda_1, \lambda_2)$$
+$$\left(\hat{\lambda_1}, \hat{\lambda_2}\right) \leftarrow \texttt{argmin}\underset{\lambda_1, \lambda_2} D(\lambda_1, \lambda_2)$$
 
 $p_1$ and $p_2$ correspond to $\lambda_1$ and $\lambda_2$ throught the equations for the lines.
 
 ### c) Find the volume of the tetrahedron
 
-A tetrahedron is geometric half of atleast one parallelapiped, therefore, volume $V(\vec{\mathbf{r_a}}, \vec{\mathbf{r_b}}, \vec{\mathbf{r_c}}, \vec{\mathbf{r_d}})$ is half of base times height:
+I was convinced that a tetrahedron is geometric one-sixth of a parallelapiped, therefore, volume $V(\vec{\mathbf{r_a}}, \vec{\mathbf{r_b}}, \vec{\mathbf{r_c}}, \vec{\mathbf{r_d}})$ is (assuming the vectors are in three dimensions for cross product to work):
 
-
-$$V(\vec{\mathbf{r_a}}, \vec{\mathbf{r_b}}, \vec{\mathbf{r_c}}, \vec{\mathbf{r_d}}) = \frac{1}{2} \left((\vec{\mathbf{r_c}} - \vec{\mathbf{r_b}}) \times (\vec{\mathbf{r_c}} - \vec{\mathbf{r_a}}) \cdot (\vec{\mathbf{r_d}} - \vec{\mathbf{r_d}})\right)$$
+$$V(\vec{\mathbf{r_a}}, \vec{\mathbf{r_b}}, \vec{\mathbf{r_c}}, \vec{\mathbf{r_d}}) = \frac{1}{2} \left|(\vec{\mathbf{r_c}} - \vec{\mathbf{r_b}}) \times (\vec{\mathbf{r_c}} - \vec{\mathbf{r_a}}) \cdot (\vec{\mathbf{r_d}} - \vec{\mathbf{r_d}})\right|$$
 
 ### d) Write formula or code for the tensions in the rods
 
 $$\vec{\mathbf{F}} + T_{ad}\hat{r_{ad}} + T_{bd}\hat{r_{bd}} + T_{cd}\hat{r_{cd}} = \vec{\mathbf{0}}$$
+There was an in-class mention about Cramer's rule to solve this. There are three equations and three unknowns, but one could use Gaussian-elimination.
