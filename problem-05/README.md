@@ -19,5 +19,5 @@ format:
 >        > “I have carefully done some of the reading assigned. That which I don’t understand or agree with, I have posted on the course Piazza site. I haven’t yet carefully read X [make appropriate substitutions for X]”.
 
 
-I have carefully done some of the reading assigned. That which I don’t understand or agree with, I have posted on the course Piazza site. I haven’t yet carefully read Chapter 3, Section 17.1, Appendix A.
+I have carefully done some of the reading assigned. That which I don’t understand or agree with, I have discussed in class. I haven’t yet carefully read Chapter 3, Section 17.1, Appendix A.
 
