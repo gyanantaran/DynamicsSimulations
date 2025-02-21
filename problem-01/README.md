@@ -45,8 +45,37 @@ end
 ```
 
 ### Numerical Solution
+In file ![./SpringPendulum/src/SpringPendulum.jl](./SpringPendulum/src/SpringPendulum.jl)
 ```julia
-{{< include "./SpringPendulum/src/SpringPendulum.jl" >}}
+module SpringPendulum
+
+using DifferentialEquations
+
+include("Parameters.jl")
+include("Physics.jl")
+include("Visualization.jl")
+
+
+# problem setup
+x₀, y₀ = (1, 0)
+r₀ = [x₀;y₀]
+v₀ = [1.0;0.0]
+u₀ = [r₀;v₀]
+tspan = (0.0,25.0)
+p = Parameters.Param(m=1,g=1,c=0.0,k=1,l₀=0)
+prob = ODEProblem(Physics.spring_pendulum!, u₀, tspan, p)
+
+
+# solver
+Δt = 0.001
+sol = solve(prob, saveat=Δt, reltol=1e-6, abstol=1e-6)
+
+
+# visualize
+# Visualization.plot_trajectory(sol)
+# Visualization.makie_animation(sol)
+
+end # module SpringPendulum
 ```
 
 ### Phase Space Trajectory
@@ -94,7 +123,6 @@ end
 The following shows the animation for the solution system. The code corresponding to this animation:
 
 ![Spring Pendulum Motion](../media/problem-01/sol_animation.gif)
-<!-- ![Spring Pendulum Motion](springpendulum_motion.mp4) -->
 
 ```julia
 function makie_animation(sol; filename="sol_animation.gif", title="Animation")
