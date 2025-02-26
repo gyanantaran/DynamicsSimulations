@@ -1,0 +1,12 @@
+name = "SimplestDynamicsPolar"
+uuid = "ba150825-1ac9-46f1-a176-0a1960a27cca"
+authors = ["vishal <95016059+gyanantaran@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+
+[compat]
+DifferentialEquations = "7.16.0"
+GLMakie = "0.11.2"
