@@ -1,5 +1,5 @@
 ---
-title: "problem-07"
+title: "problem07"
 author: "Vishal Paudel"
 date: "2025/02/24"
 format:
@@ -57,4 +57,4 @@ end
 ```
 
 Produces this animation:
-![Floating house in space](../media/problem-07/rotating_house.gif)
+![Floating house in space](../media/problem07/rotating_house.gif)
