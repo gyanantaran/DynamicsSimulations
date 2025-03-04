@@ -1,10 +1,7 @@
 ---
-title: "problem-01: Spring Pendulum Analysis"
+title: "problem01: Spring Pendulum Analysis"
 author: "Vishal Paudel"
 date: "2025/01/24"
-format:
-  docx:
-    fig-align: center
 ---
 
 > 1. Set up (define system, draw FBD, write ODEs) a particle problem. Just one particle.
@@ -13,39 +10,58 @@ Any example of interest. Find a numerical solution. Graph it. Animate it. Try to
 make an interesting observation.
 
 ### System Description and Free Body Diagram
-I think I have chosen a just hard enough interesting problem. A spring pendulum consists of a mass $m$ attached to a spring of natural length $l_0$ and spring constant $k$. The system experiences:
-- Spring force $F_s = -k(l-l_0)\hat{r}$
-- Gravitational force $F_g = -mg\hat{j}$
-- Damping force $F_d = -c\vec{v}$
 
-![Freebody-diagram](../media/problem-01/freebody-diagram.png)
+I think I have chosen a just hard enough interesting problem. A spring pendulum consists of a mass $m$ attached to a spring of natural length $l_0$ and spring constant $k$. 
+
+The system experiences:
+- Spring force $F_s = k(\|{\vec{r}\|}-l_0)(-\hat{r})$
+- Gravitational force $F_g = mg(-\hat{j})$
+- Damping force $F_d = cv(-\hat{v})$
+
+![Freebody-diagram](../media/problem01/problem01-fbd.jpeg)
 
 ### Equations of Motion
-In Cartesian coordinates $(x,y)$, Newton's second law gives:
 
-$m\ddot{x} = -k(l-l_0)\frac{x}{l} - c\dot{x}$
+In Cartesian coordinates, the equations of motion are:
 
-$m\ddot{y} = -k(l-l_0)\frac{y}{l} - c\dot{y} - mg$
+$$\dot{\vec{r}} = \vec{v}$$
+$$\dot{\vec{v}} = -k(\|\vec{r}\|-l_0) \hat{r} - c \vec{v} - mg\hat{j}$$
 
-where $l = \sqrt{x^2 + y^2}$ is the instantaneous length.
+The corresponding code for the ODE in file [./SpringPendulum/src/Physics.jl]:
 
-The corresponding code for the ODE:
 ```julia
+module Physics
+
+using ..Parameters
+using LinearAlgebra
+using UnPack
+
+export spring_pendulum!
+
 function spring_pendulum!(du, u, p::Parameters.Param, t)
-    r = u[1:2]
-    v = u[3:4]
+    @unpack mass, gravity, stiffness, restinglen, viscosity = p
 
-    gravity = p.mass*p.gravity*[0;-1]
-    spring = -p.stiffness*(norm(r)-p.restinglen)*(r/norm(r))
-    drag = -p.viscosity*v
+    r⃗ = u[1:2]
+    v⃗ = u[3:4]
 
-    du[1:2] = v
-    du[3:4] = (1.0/p.mass)*(gravity+spring+drag)
+    ĵ = [0.0; 1.0]
+    gravity = mass * gravity * (-ĵ)
+    spring = stiffness * (norm(r⃗) - restinglen) * (-normalize(r⃗))
+    drag = -viscosity * v⃗
+
+    force = (spring + drag + gravity)
+
+    du[1:2] = v⃗
+    du[3:4] = force / mass
+end
+
 end
 ```
 
 ### Numerical Solution
-In file ![./SpringPendulum/src/SpringPendulum.jl](./SpringPendulum/src/SpringPendulum.jl)
+
+In file [./SpringPendulum/src/SpringPendulum.jl](./SpringPendulum/src/SpringPendulum.jl)
+
 ```julia
 module SpringPendulum
 
@@ -72,18 +88,23 @@ sol = solve(prob, saveat=Δt, reltol=1e-6, abstol=1e-6)
 
 
 # visualize
-# Visualization.plot_trajectory(sol)
-# Visualization.makie_animation(sol)
+# ...
 
 end # module SpringPendulum
 ```
 
 ### Phase Space Trajectory
+
 Plot showing the system evolution in phase space.
 
-![Left: Trajectory plot. Right: Theta vs Time](../media/problem-01/trajectory_plot.png)
+```julia
+#...
+Visualization.makie_animation(sol)
+#...
+```
+![Left: Trajectory plot. Right: Theta vs Time](../media/problem01/trajectory_plot.png)
 
-Code corresponding to this:
+Code corresponding to this in file [SpringPendulum/src/Visualization.jl]:
 
 ```julia
 function plot_trajectory(sol; title="Spring Pendulum Trajectory")
@@ -122,7 +143,9 @@ end
 ### Animation
 The following shows the animation for the solution system. The code corresponding to this animation:
 
-![Spring Pendulum Motion](../media/problem-01/sol_animation.gif)
+TODO: add springs to visualise
+
+![Spring Pendulum Motion](../media/problem01/sol_animation.gif)
 
 ```julia
 function makie_animation(sol; filename="sol_animation.gif", title="Animation")

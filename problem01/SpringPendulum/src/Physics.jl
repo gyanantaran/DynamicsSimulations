@@ -4,20 +4,23 @@ using ..Parameters
 using LinearAlgebra
 using UnPack
 
-export spring_pendulum!;
+export spring_pendulum!
 
 function spring_pendulum!(du, u, p::Parameters.Param, t)
     @unpack mass, gravity, stiffness, restinglen, viscosity = p
 
-    r = u[1:2]
-    v = u[3:4]
+    r⃗ = u[1:2]
+    v⃗ = u[3:4]
 
-    gravity = mass*gravity*[0;-1]
-    spring = -stiffness*(norm(r)-restinglen)*(r/norm(r))
-    drag = -viscosity*v
+    ĵ = [0.0; 1.0]
+    gravity = mass * gravity * (-ĵ)
+    spring = stiffness * (norm(r⃗) - restinglen) * (-normalize(r⃗))
+    drag = -viscosity * v⃗
 
-    du[1:2] = v
-    du[3:4] = (1.0/mass)*(gravity+spring+drag)
+    force = (spring + drag + gravity)
+
+    du[1:2] = v⃗
+    du[3:4] = force / mass
 end
 
 end
