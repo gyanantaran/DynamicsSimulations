@@ -1,10 +1,7 @@
 ---
-title: "problem-03"
+title: "problem03"
 author: "Vishal Paudel"
 date: "2025/01/24"
-format:
-  docx:
-    fig-align: center
 ---
 
 > 3. More ODE & animation practice. Take a simple set of ODEs. Use a set you like,e.g., harmonic oscillator, non-linear pendulum, the Lorentz system (look it up on the internet). Solve this set numerically 3 ways (see below), and understand the accuracy. The goal is that, by the time you hand in the homework, you can write and debug the assignment on your own without looking up anything (outside of trivial syntax things). And you always have a good sense of the accuracy of your solution.  
@@ -14,7 +11,7 @@ format:
 >     d. Using (b), solve the equations many times with progressively smaller step size, down to the smallest size you have patience for, and up to the largest size that isn’t crazy. As sensibly as possible, compare the results and use that comparison to estimate the accuracy of each solution. You should be able to find a method to estimate the accuracy of a numerical solution even without knowing the exact solution.  
 >     e. Using ODE45, solve the equations with various accuracies (use ’reltol’ and ’abstol’, note MATLAB satisfies one or the other, whichever is easiest. So, if you want an accurate solution you need to make both ’reltol’ and ’abstol’ small). Does Matlab do a good job of estimating its own accuracy? Use suitable plots to make your point.  
 
-### (a) Write a single file or function write eulers method
+# a. Write a single file or function write eulers method
 
 In file [./ODESolvers/procedural.jl](./ODESolvers/procedural.jl):
 
@@ -147,18 +144,22 @@ GLMakie.display(trajectory_plot)
 
 This generates the following trajectory:
 
-![Two Spring Pendulum](../media/problem-03/two_spring_pendulum.png)
+![Two Spring Pendulum](../media/problem03/two_spring_pendulum.png)
 
 For the animation, with some more interesting parameters, produces the following animation:
 
 ```julia
+#...
 Visualization.makie_animation(sol)
+#...
 ```
 
-![Two Spring Pendulum Animation without any info](../media/problem-03/two_spring_pendulum.gif)
+TODO: TODO of problem 01: visualisation springs
+
+![Two Spring Pendulum Animation without any info](../media/problem03/two_spring_pendulum.gif)
 
 
-### (b) Call RHS function inside solver
+# b. Call RHS function inside solver
 
 I have modularised this very file into modules inside [./ODESolvers/src/ODESolvers.jl](./ODESolvers/src/ODESolvers.jl):
 
@@ -179,7 +180,7 @@ Visualization.plot_trajectory_makie(sol, prob)
 end # module ODESolvers
 ```
 
-# (c) Use ODE45 equivalent
+# c. Use ODE45 equivalent
 
 I use Julia package `DifferentialEquations` in file [./ODESolvers/src/ODESolvers.jl](./ODESolvers/src/ODESolvers.jl):
 
@@ -209,7 +210,7 @@ Visualization.plot_trajectory_makie(sol_ode45.u, prob)
 end # module ODESolvers
 ```
 
-# (d) Progressively change $\delta h$ and compare solutions
+# d. Progressively change $\Delta h$ and compare solutions
 
 To compare methods, and so there solutions on progressively reducing step sizes, one idea I could come up with is comparing the 'Slither'(something which I name later) characteristic.
 
@@ -219,7 +220,7 @@ The rate of change of (roco) Slither with respect(wr) to the step size is what i
 
 It is interesting to note that there are many other methods to compare two solutions, one other I can think of is instead of tracking and characterising the Slither decay, I instead just take the euclidean norm of end state vector. Since I expect this to be much easier to implement in code, let's call this difference the 'TailMatch'. I will start with this.
 
-### TailMatch Characterisation
+## TailMatch Characterisation
 
 The 'tailmatch' is quite easily implemented in code, in file [./ODESolvers/src/Benchmarks.jl](./ODESolvers/src/Benchmarks.jl):
 
@@ -229,13 +230,15 @@ tail_match(sol1::ProblemTypes.Solution, sol2::ProblemTypes.Solution)::ProblemTyp
 
 Since my current implementation saves updated state at each step, benchmarking for progressively reducing step sizes takes a lot of memory on top of time. I will update the euler solver to not save at each time step, benchmark at smaller step sizes later. For now, for the step size, I have gone till 1e-6 and the plot for the benchmark, with `tail_match` is as follows:
 
-![Step sizes vs AbsError](../media/problem-03/benchmark_result.png)
+![Step sizes vs AbsError](../media/problem03/benchmark_result.png)
+
+TODO: fix memory issue and go till 1e-15
 
 ## Slither Charaterisation
 
 To do this, we create some histories with different step sizes. I have skipped this for now.
 
-# (e) Use ODE45 with varying accuracies and conclude if matlab does a good job estimating its own accuracy.
+# e. Use ODE45 with varying accuracies and conclude if matlab does a good job estimating its own accuracy.
 
 I not here the formula for step size based on reltol and abstol, which is the standard options for controlling stepping behavior.
 
