@@ -234,6 +234,8 @@ Since my current implementation saves updated state at each step, benchmarking f
 
 TODO: fix memory issue and go till 1e-15
 
+I have done some deep (very small) comparision of `Midpoint` and `RK4` in [./problem09/README.md](./problem09/README.md)
+
 ## Slither Charaterisation
 
 To do this, we create some histories with different step sizes. I have skipped this for now.
