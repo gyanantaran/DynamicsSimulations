@@ -87,18 +87,130 @@ This numerical solution gives the following trajectory:
 
 For various initial conditions, the numeric and analytical solutions on the same graph, I was shifting the analytic in x direction by 0.1 unit to be able view both, otherwise they were overlapping with the default tolerances, but then I ended up using a non-dynamic step size explicit solver:
 
-In file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
+In file [./Ballistics/src/Benchmarks.jl](./Ballistics/src/Benchmarks.jl):
+
+```julia
+module Benchmarks
+
+using DifferentialEquations
+using LinearAlgebra
+
+# Abs error for various step sizes
+function abs_error_vs_step_sizes(prob, analytical_solve)
+    # step_sizes = 10.0 .^ range(-1, -15, step=-1)
+    step_sizes = 10.0 .^ range(-1, -5, step=-1)
+    abs_errors_midpoint = Vector{Union{Missing, Float64}}(missing, length(step_sizes))
+    abs_errors_rk4 = Vector{Union{Missing, Float64}}(missing, length(step_sizes))
+
+    for (i,Δh) in enumerate(step_sizes)
+        sol_numeric_midpoint = solve(prob, Midpoint(), dt=Δh, adaptive=false, save_everystep=false)[end]
+        sol_numeric_rk4 = solve(prob, RK4(), dt=Δh, adaptive=false, save_everystep=false)[end]
+        tend = prob.tspan[2]
+        sol_analytic = analytical_solve(tend)
+
+        separation_midpoint = sol_numeric_midpoint - sol_analytic
+        separation_rk4 = sol_numeric_rk4 - sol_analytic
+        error_midpoint = norm(separation_midpoint)
+        error_rk4 = norm(separation_rk4)
+    
+        abs_errors_midpoint[i] = error_midpoint
+        abs_errors_rk4[i] = error_rk4
+    end
+
+    log_errors_midpoint = log10.(abs_errors_midpoint)
+    log_errors_rk4 = log10.(abs_errors_rk4)
+    log_errors_dict = Dict("midpoint"=>log_errors_midpoint, "rk4"=> log_errors_rk4)
+    log_steps = log10.(step_sizes)
+
+    return log_steps, log_errors_dict
+end
+
+# Abs error for all times
+function error_vs_time(prob, analytical_solve)
+    N = 5
+    step_sizes = 10.0 .^ range(-1, -N, step=-1)
+    time_histories = Vector{Union{Missing, Vector{Float64}}}(missing, length(step_sizes))
+    error_histories = Vector{Union{Missing, Vector{Float64}}}(missing, length(step_sizes))
+    for (i,Δh) in enumerate(step_sizes)
+        sol = solve(prob, Midpoint(), dt=Δh, adaptive=false, save_everystep=true)
+
+        timestamps = sol.t
+        sol_numeric_midpoint = sol.u
+        sol_analytic = analytical_solve.(timestamps)
+
+        separations = sol_numeric_midpoint .- sol_analytic
+        manhatten_errors = norm.(separations, Ref(1))
+        error_histories[i] = log10.(manhatten_errors)
+        time_histories[i] = timestamps
+    end
+    return time_histories, error_histories
+end
 
 
+end # module Benchmarks
+```
  
 ![../media/problem09/numeric_and_analytical_trajectories.png](../media/problem09/numeric_and_analytical_trajectories.png)
 
 Now, I will plot the steps sizes vs error (euclidean norm of state vector at tend):
 
-![]()
+![../media/problem09/steps_vs_error.png](../media/problem09/steps_vs_error.png)
 
-Now, I will change the relative tolerance and absolute tolerance.
+For a better method, like RK4, on the same graph:
 
+![../media/problem09/steps_vs_error_two_methods_compare.png](../media/problem09/steps_vs_error_two_methods_compare.png)
+
+Now, for time vs error compilation:
+
+![../media/problem09/time_vs_running_error.png](../media/problem09/time_vs_running_error.png)
+
+Now, I will change the relative tolerance and absolute tolerance. In file [./Ballistics/src/Benchmarks.jl](./Ballistics/src/Benchmarks.jl):
+
+```julia
+function tolerances_vs_error(prob, analytical_solve)
+    N = 15
+    error_matrix = Matrix{Float64}(undef, N, N)
+    num_granularity = N+7
+    abstols = 10.0 .^ range(7, -N, length=num_granularity)
+    reltols = 10.0 .^ range(7, -N, length=num_granularity)
+
+    num_samples = length(abstols)*length(reltols)
+
+    xs = Vector{Float64}(undef, num_samples)
+    ys = Vector{Float64}(undef, num_samples)
+    zs = Vector{Float64}(undef, num_samples)
+
+    for (i, abstol) in enumerate(abstols)
+        for (j, reltol) in enumerate(reltols)
+            sol_numeric = solve(prob, Midpoint(), adaptive=true, save_everystep=false, abstol=abstol, reltol=reltol)[end]
+            sol_analytic = analytical_solve(prob.tspan[2])
+
+            separation = sol_numeric - sol_analytic
+            error = norm(separation)
+            xs[i+num_granularity*(j-1)] = abstol
+            ys[i+num_granularity*(j-1)] = reltol
+            zs[i+num_granularity*(j-1)] = error
+        end
+    end
+    xs,ys,zs
+end
+```
+
+Just by mistake I ran this for large (>1.0) tolerances. Below is the plot:
+
+![../media/problem09/large_tolerances.png](../media/problem09/large_tolerances.png)
+
+Similarly for tiny (<<1.0) tolerances the plot:
+
+![../media/problem09/small_tolerances.png](../media/problem09/small_tolerances.png)
+
+Both scales on the same graph:
+
+![../media/problem09/tolerances_vs_error_combined.png](../media/problem09/tolerances_vs_error_combined.png)
+
+Simply put, it seems reducing both `abstol` and `reltol` generally reduces error from the analytic solution.
+
+What is the meaning of both is not yet entirely clear.
 
 # d. Use large and larger values of v0, plot all of their trajectory till ball hits ground. What happens to the eventual shape as v -> ∞ ?
 

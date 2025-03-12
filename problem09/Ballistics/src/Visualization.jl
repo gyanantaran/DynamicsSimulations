@@ -94,4 +94,37 @@ function plot_both_velocity(sol_numeric, sol_analytic, filename="numeric_and_ana
     GLMakie.display(fig)
 end
 
+function plot_abs_steps_vs_error(log_steps, log_errors)
+    log_errors_midpoint, log_errors_rk4 = log_errors["midpoint"], log_errors["rk4"]
+
+    fig = GLMakie.Figure()
+    ax = GLMakie.Axis(fig[1, 1], aspect = GLMakie.DataAspect(), xticks=log_steps, title="Steps vs Error (Midpoint and RK4 methods)", xlabel=GLMakie.L"\log_{10}(\text{steps})", ylabel=GLMakie.L"\log_{10}(\text{errors})")
+
+    midpoint_plot = GLMakie.lines!(log_steps, log_errors_midpoint)
+    GLMakie.scatter!(log_steps, log_errors_midpoint)
+
+    rk4_plot = GLMakie.lines!(log_steps, log_errors_rk4)
+    GLMakie.scatter!(log_steps, log_errors_rk4)
+
+    GLMakie.Legend(fig[1,2], [midpoint_plot, rk4_plot], ["Midpoint", "RK4"])
+
+    GLMakie.save("steps_vs_error_two_methods_compare.png", fig)
+    GLMakie.display(fig)
+end
+
+function plot_abs_steps_vs_time(time_histories, error_histories)
+    fig = GLMakie.Figure()
+    ax = GLMakie.Axis(fig[1, 1], title="Time vs Running Error", xlabel="time", ylabel=GLMakie.L"\log_{10}(\text{manhatten error})", aspect = 0.75)
+    histories = zip(time_histories, error_histories)
+
+    GLMakie.xlims!(ax, (-0.25, 1.25))
+    GLMakie.ylims!(ax, (-20.0, 0.0))
+    for history in histories
+        GLMakie.lines!(history...)
+    end
+
+    GLMakie.save("time_vs_running_error.png", fig)
+    GLMakie.display(fig)
+end
+
 end # module Visualization
