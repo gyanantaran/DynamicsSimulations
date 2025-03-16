@@ -4,14 +4,16 @@ author: "Vishal Paudel"
 date: "2025/02/26"
 ---
 
-> 9. Canon ball. A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude |cv|.
->     (a) Find position vs time analytically.
->     (b) Find a numerical solution using θ = π/4, v0 = 1 m/s, g = 1 m/s 2 , m = 1 kg, c = 1 kg/ s.
->     (c) Compare the numeric and analytic solutions. At t = 2 how big is the error? How does the error depend on specified tolerances or step sizes?
->     (d) Use larger and larger values of v0 and for each trajectory choose a time interval so the canon at least gets back to the ground. Plot the trajectories (using equal scale for the x and y axis. Plot all curves on one plot. As v → ∞ what is the eventual shape? [Hint: the answer is simple and interesting.]
->     (e) For any given v0 there is a best launch angle θ ∗ for maximizing the range. As v0 → ∞ to what angle does θ ∗ tend? Justify your answer as best you can with careful numerics, analytical work, or both.
+> 9\. Canon ball. A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude $\|c
+\vec{v}\|$.  
+>
+>     (a) Find position vs time analytically.  
+>     (b) Find a numerical solution using θ = π/4, v0 = 1 m/s, g = 1 m/s 2 , m = 1 kg, c = 1 kg/ s.  
+>     (c) Compare the numeric and analytic solutions. At t = 2 how big is the error? How does the error depend on specified tolerances or step sizes?  
+>     (d) Use larger and larger values of v0 and for each trajectory choose a time interval so the canon at least gets back to the ground. Plot the trajectories (using equal scale for the x and y axis. Plot all curves on one plot. As v → ∞ what is the eventual shape? [Hint: the answer is simple and interesting.]  
+>     (e) For any given v0 there is a best launch angle θ ∗ for maximizing the range. As v0 → ∞ to what angle does θ ∗ tend? Justify your answer as best you can with careful numerics, analytical work, or both.  
 
-# a. Find position vs time analytically.
+# Find position vs time analytically.
 
 The corresponding code for this in file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
 
@@ -52,7 +54,7 @@ end
 
 TODO: Could I have created this analytical solution symbolically?
 
-# b. Find a numerical solution using given parameters
+# Find a numerical solution using given parameters
 
 The corresponding code for this in file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
 
@@ -83,7 +85,7 @@ This numerical solution gives the following trajectory:
 
 ![../media/problem09/numerical_trajectory.png](../media/problem09/numerical_trajectory.png)
 
-# c. Compare the numeric and analytics solutions? Plot time vs error. Plot step size and tolerances vs error.
+# Compare the numeric and analytics solutions? Plot time vs error. Plot step size and tolerances vs error.
 
 For various initial conditions, the numeric and analytical solutions on the same graph, I was shifting the analytic in x direction by 0.1 unit to be able view both, otherwise they were overlapping with the default tolerances, but then I ended up using a non-dynamic step size explicit solver:
 
@@ -210,8 +212,8 @@ Both scales on the same graph:
 
 Simply put, it seems reducing both `abstol` and `reltol` generally reduces error from the analytic solution _very quickly_. What is the meaning of both is not yet entirely clear.
 
-# d. Use large and larger values of v0, plot all of their trajectory till ball hits ground. What happens to the eventual shape as v -> ∞ ?
+# Use larger and larger values of v0, plot all of their trajectory till ball hits ground. What happens to the eventual shape as v -> ∞ ?
 
-# e. Plot speed verses best launch angle, numerically or analyticaly or both
+# Plot speed verses best launch angle, numerically or analyticaly or both
 
-This concludes my attempt of problem08.
+This concludes my attempt of problem09.
