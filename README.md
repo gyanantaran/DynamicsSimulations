@@ -1,8 +1,8 @@
 ---
-layout: "dynamics"
 title: "Dynamics"
 author: "Vishal Paudel"
 date: "2025/01/24"
+permalink: /dynamics/
 ---
 
 # Dynamics Simulations
