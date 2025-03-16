@@ -4,7 +4,11 @@ using LinearAlgebra
 
 using ..ProblemTypes
 
-function two_spring_pendulum(u::ProblemTypes.State, p::ProblemTypes.Param, t::ProblemTypes.Time)
+function two_spring_pendulum(
+    u::ProblemTypes.State,
+    p::ProblemTypes.Param,
+    t::ProblemTypes.Time,
+)
     r = u[1:2]
     v = u[3:4]
 
@@ -37,7 +41,12 @@ function two_spring_pendulum(u::ProblemTypes.State, p::ProblemTypes.Param, t::Pr
     return u_new
 end
 
-function two_spring_pendulum!(du::ProblemTypes.State, u::ProblemTypes.State, p::Param, t::ProblemTypes.Tspan)
+function two_spring_pendulum!(
+    du::ProblemTypes.State,
+    u::ProblemTypes.State,
+    p::Param,
+    t::ProblemTypes.Tspan,
+)
     r = u[1:2]
     v = u[3:4]
 

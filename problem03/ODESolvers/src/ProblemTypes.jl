@@ -10,14 +10,14 @@ Time = Float64
 Tspan = Tuple{Time,Time}
 State = Vector{Float64}
 struct Param
-    r₁
-    k₁
-    l₁
-    r₂
-    k₂
-    l₂
-    m
-    g
+    r₁::Any
+    k₁::Any
+    l₁::Any
+    r₂::Any
+    k₂::Any
+    l₂::Any
+    m::Any
+    g::Any
 end
 struct Prob
     ode::ODE_Function
@@ -31,7 +31,7 @@ StepSizes = Vector{StepSize}
 Solution = Vector{State}
 AbsError = Float64
 
-Solver = FunctionWrapper{Solution, Tuple{Prob, StepSize}}
+Solver = FunctionWrapper{Solution,Tuple{Prob,StepSize}}
 BenchmarkResult = Vector{AbsError}
 
 end # module ProblemTypes

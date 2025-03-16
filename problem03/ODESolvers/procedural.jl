@@ -9,14 +9,14 @@ Time = Float64
 Tspan = Tuple{Time,Time}
 State = Vector{Float64}
 struct Param
-    r₁
-    k₁
-    l₁
-    r₂
-    k₂
-    l₂
-    m
-    g
+    r₁::Any
+    k₁::Any
+    l₁::Any
+    r₂::Any
+    k₂::Any
+    l₂::Any
+    m::Any
+    g::Any
 end
 struct Prob
     ode::ODE_Function
@@ -44,9 +44,11 @@ function two_spring_pendulum(u::State, p::Param, t::Time)
     j = [0; 1]
 
     seperation1 = (r - r₁)
-    spring1 = k₁ * (LinearAlgebra.norm(seperation1) - l₁) * -LinearAlgebra.normalize(seperation1)
+    spring1 =
+        k₁ * (LinearAlgebra.norm(seperation1) - l₁) * -LinearAlgebra.normalize(seperation1)
     seperation2 = (r - r₂)
-    spring2 = k₂ * (LinearAlgebra.norm(seperation2) - l₂) * -LinearAlgebra.normalize(seperation2)
+    spring2 =
+        k₂ * (LinearAlgebra.norm(seperation2) - l₂) * -LinearAlgebra.normalize(seperation2)
     gravity = m * g * -j
 
     F = (1 / m) * (spring1 + spring2 + gravity)
@@ -66,15 +68,15 @@ function plot_trajectory_makie(sol::Solution, prob::Prob)::GLMakie.Figure
 
     # Create figure
     fig = GLMakie.Figure()
-    ax = GLMakie.Axis(fig[1, 1], aspect=GLMakie.DataAspect())
+    ax = GLMakie.Axis(fig[1, 1], aspect = GLMakie.DataAspect())
 
     # Plot trajectory
     GLMakie.lines!(ax, sol_matrix[:, 1], sol_matrix[:, 2])
 
     # Plot reference points
     r₁, r₂ = prob.p.r₁, prob.p.r₂
-    GLMakie.scatter!(ax, [r₁[1]], [r₁[2]], color=:red, markersize=15)
-    GLMakie.scatter!(ax, [r₂[1]], [r₂[2]], color=:blue, markersize=15)
+    GLMakie.scatter!(ax, [r₁[1]], [r₁[2]], color = :red, markersize = 15)
+    GLMakie.scatter!(ax, [r₂[1]], [r₂[2]], color = :blue, markersize = 15)
 
     # Display the figure
     return fig

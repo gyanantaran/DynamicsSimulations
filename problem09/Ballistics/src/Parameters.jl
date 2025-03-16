@@ -6,6 +6,6 @@ struct Param
     viscosity::Float64
 end
 
-Param(;m=1.0, g=10.0, c=1.0) = Param(m, g, c)
+Param(; m = 1.0, g = 10.0, c = 1.0) = Param(m, g, c)
 
 end

@@ -1,33 +1,30 @@
 ---
-title: "problem01: Spring Pendulum Analysis"
+title: "problem01"
 author: "Vishal Paudel"
 date: "2025/01/24"
 ---
 
-> 1. Set up (define system, draw FBD, write ODEs) a particle problem. Just one particle.
-2D or 3D, your choice. Use a force, or forces that you like (gravity, spring, air friction).
-Any example of interest. Find a numerical solution. Graph it. Animate it. Try to
-make an interesting observation.
+> 1. Set up (define system, draw FBD, write ODEs) a particle problem. Just one particle. 2D or 3D, your choice. Use a force, or forces that you like (gravity, spring, air friction). Any example of interest. Find a numerical solution. Graph it. Animate it. Try to make an interesting observation.
 
-### System Description and Free Body Diagram
+# System Description and Free Body Diagram
 
 I think I have chosen a just hard enough interesting problem. A spring pendulum consists of a mass $m$ attached to a spring of natural length $l_0$ and spring constant $k$. 
 
 The system experiences:
-- Spring force $F_s = k(\|{\vec{r}\|}-l_0)(-\hat{r})$
-- Gravitational force $F_g = mg(-\hat{j})$
-- Damping force $F_d = cv(-\hat{v})$
+- Spring force $\vec{F_s} = k(\|{\vec{r}\|}-l_0)(-\hat{r})$
+- Gravitational force $\vec{F_g} = mg(-\hat{j})$
+- Damping force $\vec{F_d} = cv(-\hat{v})$
 
 ![Freebody-diagram](../media/problem01/problem01-fbd.jpeg)
 
-### Equations of Motion
+# Equations of Motion
 
 In Cartesian coordinates, the equations of motion are:
 
 $$\dot{\vec{r}} = \vec{v}$$
 $$\dot{\vec{v}} = -k(\|\vec{r}\|-l_0) \hat{r} - c \vec{v} - mg\hat{j}$$
 
-The corresponding code for the ODE in file [./SpringPendulum/src/Physics.jl]:
+The corresponding code for the ODE in file [./SpringPendulum/src/Physics.jl](./SpringPendulum/src/Physics.jl):
 
 ```julia
 module Physics
@@ -58,7 +55,7 @@ end
 end
 ```
 
-### Numerical Solution
+# Numerical Solution
 
 In file [./SpringPendulum/src/SpringPendulum.jl](./SpringPendulum/src/SpringPendulum.jl)
 
@@ -71,7 +68,6 @@ include("Parameters.jl")
 include("Physics.jl")
 include("Visualization.jl")
 
-
 # problem setup
 x₀, y₀ = (1, 0)
 r₀ = [x₀;y₀]
@@ -81,11 +77,9 @@ tspan = (0.0,25.0)
 p = Parameters.Param(m=1,g=1,c=0.0,k=1,l₀=0)
 prob = ODEProblem(Physics.spring_pendulum!, u₀, tspan, p)
 
-
 # solver
 Δt = 0.001
 sol = solve(prob, saveat=Δt, reltol=1e-6, abstol=1e-6)
-
 
 # visualize
 # ...
@@ -93,18 +87,13 @@ sol = solve(prob, saveat=Δt, reltol=1e-6, abstol=1e-6)
 end # module SpringPendulum
 ```
 
-### Phase Space Trajectory
+# Phase Space Trajectory
 
-Plot showing the system evolution in phase space.
+Plot showing the system evolution in phase space. In file [./SpringPendulum/src/Visualization.jl](./SpringPendulum/src/Visualization.jl):
 
-```julia
-#...
-Visualization.makie_animation(sol)
-#...
-```
 ![Left: Trajectory plot. Right: Theta vs Time](../media/problem01/trajectory_plot.png)
 
-Code corresponding to this in file [SpringPendulum/src/Visualization.jl]:
+Code corresponding to this in file [SpringPendulum/src/Visualization.jl](SpringPendulum/src/Visualization.jl):
 
 ```julia
 function plot_trajectory(sol; title="Spring Pendulum Trajectory")
@@ -140,12 +129,14 @@ function plot_trajectory(sol; title="Spring Pendulum Trajectory")
 end
 ```
 
-### Animation
+# Animation
 The following shows the animation for the solution system. The code corresponding to this animation:
 
 TODO: add springs to visualise
 
 ![Spring Pendulum Motion](../media/problem01/sol_animation.gif)
+
+The code corresponding to this animation is in file [./SpringPendulum/src/Visualization.jl](./SpringPendulum/src/Visualization.jl):
 
 ```julia
 function makie_animation(sol; filename="sol_animation.gif", title="Animation")
@@ -185,11 +176,11 @@ function makie_animation(sol; filename="sol_animation.gif", title="Animation")
 end
 ```
 
-### Observations
+# Observations
 
 1. Energy exchange between potential and kinetic forms
 2. Damped oscillations due to viscous friction
-3. For some parameters there is weird behaviour at very small scales, like the following. This is probably an artifact of the solver and floating point truncations. I was unable to reproduce this, but I had shown this to Professor Andy and Ganesh Bhaiya.
+3. For some parameters there is weird behaviour at very small scales. This is probably an artifact of the solver and floating point truncations. I was unable to reproduce this, but I had shown this to Professor Andy and Ganesh Bhaiya.
 4. Increasing `c` by a little has a drastic effect
 5. The problem was fun to simulate
 6. Julia was fun to code in: Libraries were ergonomic to use, DifferentialEquations.jl, and Makie.jl

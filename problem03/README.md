@@ -4,7 +4,8 @@ author: "Vishal Paudel"
 date: "2025/01/24"
 ---
 
-> 3. More ODE & animation practice. Take a simple set of ODEs. Use a set you like,e.g., harmonic oscillator, non-linear pendulum, the Lorentz system (look it up on the internet). Solve this set numerically 3 ways (see below), and understand the accuracy. The goal is that, by the time you hand in the homework, you can write and debug the assignment on your own without looking up anything (outside of trivial syntax things). And you always have a good sense of the accuracy of your solution.  
+> 3\. More ODE & animation practice. Take a simple set of ODEs. Use a set you like,e.g., harmonic oscillator, non-linear pendulum, the Lorentz system (look it up on the internet). Solve this set numerically 3 ways (see below), and understand the accuracy. The goal is that, by the time you hand in the homework, you can write and debug the assignment on your own without looking up anything (outside of trivial syntax things). And you always have a good sense of the accuracy of your solution.  
+> 
 >     a. Method 1: as simply as possible, without ODE45, and without calling functions or anything like that. A single function or script file with no function calls (ok, plotting calls are ok). Just write a simple loop that implements Euler’s method with your ODE.  
 >     b. With your own Euler solver function. Your main program should call your Euler solver. Your Euler solver should call a RHS (Right Hand Side) function.  
 >     c. With ODE45.  

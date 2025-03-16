@@ -4,7 +4,10 @@ using LinearAlgebra
 
 using ..ProblemTypes
 
-tail_match(sol1::ProblemTypes.Solution, sol2::ProblemTypes.Solution)::ProblemTypes.AbsError = norm(sol2[end] - sol1[end])
+tail_match(
+    sol1::ProblemTypes.Solution,
+    sol2::ProblemTypes.Solution,
+)::ProblemTypes.AbsError = norm(sol2[end] - sol1[end])
 
 # function slither(sol1::ProblemTypes.Solution, sol2::ProblemTypes.Solution)::ProblemTypes.SolutionDifference
 #     Δt = 
@@ -13,8 +16,12 @@ tail_match(sol1::ProblemTypes.Solution, sol2::ProblemTypes.Solution)::ProblemTyp
 
 # Note: returns abs difference of neighbouring step size solutions
 # step sizes should be monotonic
-function benchmark(solver::ProblemTypes.Solver, problem::ProblemTypes.Prob, step_sizes::ProblemTypes.StepSizes)::ProblemTypes.BenchmarkResult
-    @assert length(step_sizes)>1 "Have to provide atleast two step sizes"
+function benchmark(
+    solver::ProblemTypes.Solver,
+    problem::ProblemTypes.Prob,
+    step_sizes::ProblemTypes.StepSizes,
+)::ProblemTypes.BenchmarkResult
+    @assert length(step_sizes) > 1 "Have to provide atleast two step sizes"
     benchmark_results = zeros(length(step_sizes) - 1)
 
     # ugly

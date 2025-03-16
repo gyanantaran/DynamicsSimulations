@@ -208,9 +208,7 @@ Both scales on the same graph:
 
 ![../media/problem09/tolerances_vs_error_combined.png](../media/problem09/tolerances_vs_error_combined.png)
 
-Simply put, it seems reducing both `abstol` and `reltol` generally reduces error from the analytic solution.
-
-What is the meaning of both is not yet entirely clear.
+Simply put, it seems reducing both `abstol` and `reltol` generally reduces error from the analytic solution _very quickly_. What is the meaning of both is not yet entirely clear.
 
 # d. Use large and larger values of v0, plot all of their trajectory till ball hits ground. What happens to the eventual shape as v -> ∞ ?
 

@@ -1,4 +1,5 @@
 # media/
+.obsidian/
 *.mp4
 *.docx
 *.pdf

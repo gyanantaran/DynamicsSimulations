@@ -15,8 +15,13 @@ import DifferentialEquations
 prob_euler = ProblemSetup.prob
 sol_euler = EulerSolver.euler_solve(prob_euler, Δh)
 
-prob_ode45 = DifferentialEquations.ODEProblem(prob_euler.ode, prob_euler.u₀, prob_euler.tspan, prob_euler.p)
-sol_ode45 = DifferentialEquations.solve(prob_ode45, saveat=Δh)
+prob_ode45 = DifferentialEquations.ODEProblem(
+    prob_euler.ode,
+    prob_euler.u₀,
+    prob_euler.tspan,
+    prob_euler.p,
+)
+sol_ode45 = DifferentialEquations.solve(prob_ode45, saveat = Δh)
 
 # sol = sol_ode45
 # prob = prob_ode45

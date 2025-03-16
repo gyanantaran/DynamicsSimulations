@@ -18,20 +18,15 @@ $$\vec{a} = (\ddot{r} - r\omega^2)\hat{e}_r + (2\dot{r}\omega + r\dot{\omega})\h
 
 We can break this down into two scalar differential equations of non-unity order, 
 
-$$
-\begin{align}
-	\ddot{r} - r\omega^2 &= 0 \\
-	2\dot{r}\omega + r \dot{\omega} &= 0
-\end{align}
-$$
+$$ \ddot{r} - r\omega^2 = 0 $$
+
+$$ 2\dot{r}\omega + r \dot{\omega} = 0 $$
 
 Rearranging the terms
-$$
-\begin{align}
-	\ddot{r} &=  r\omega^2 \\
-	\dot{\omega} &= - 2r^{-1}v_r\omega
-\end{align}
-$$
+
+$$ \ddot{r} =  r\omega^2 $$
+
+$$ \dot{\omega} = - 2r^{-1}v_r\omega $$
 
 introducing the state variable in the following way to reduce this into a first order vector differential equation, also we include $\theta$ to able to track it:
 
@@ -160,7 +155,15 @@ $$e = \texttt{norm}(\mathbf{\vec{p}}-\mathbf{\hat{p}})$$
 The code corresponding to this, in file [./SimplestDynamicsPolar/src/SimplestDynamicsPolar.jl](./SimplestDynamicsPolar/src/SimplestDynamicsPolar.jl):
 
 ```julia
-
+# Measuring straightness
+function norm_expected_straight_endpoint(p⃗)
+    Δt = tspan[2] - tspan[1]
+    v⃗_cartesian = vᵣ₀ .* êᵣ₀ + vₚ₀ .* êₚ₀
+    p̂ = r₀ .* [cos(θ₀); sin(θ₀)] .+ v⃗_cartesian .* Δt
+    s⃗ = p⃗ .- p̂
+    e = norm(s⃗)
+    return e
+end
 ```
 
 The path is already very straight without refining $\Delta h$:

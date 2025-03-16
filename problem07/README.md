@@ -2,15 +2,13 @@
 title: "problem07"
 author: "Vishal Paudel"
 date: "2025/02/24"
-format:
-  docx:
-    fig-align: center
 ---
 
 > 7. Simple animation of a shape. Draw a picture of some object (a face, a house, whatever), and make it move around on the screen in a smooth and interesting way. No distortions. Just motions and rotations
 
 
 In file [./simple_animation.jl](./simple_animation.jl):
+
 ```julia
 using GLMakie
 
@@ -57,4 +55,5 @@ end
 ```
 
 Produces this animation:
+
 ![Floating house in space](../media/problem07/rotating_house.gif)

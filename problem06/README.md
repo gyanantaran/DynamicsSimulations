@@ -1,14 +1,20 @@
 ---
-title: "problem-06"
+title: "problem06"
 author: "Vishal Paudel"
 date: "2025/01/24"
-format:
-  docx:
-    fig-align: center
 ---
 
-> 6. Spring and mass (2D). One end of of a negligible-mass spring (k, L0
-) is pinned to the origin, the other to a mass (m). There is gravity (g). Initial Conditions (ICs): The initial position is *r0 = x0ˆı + y0ˆ, and the initial velocity is *v0 = vx0ˆı + vy0ˆ.Motion starts at t = 0 and ends at tend.(a) Find the Equations of Motion (EoM);(b) Assume all parameters and IC’s above are given.i. Plot the trajectory of the mass.ii. Animate the trajectory of the mass.(c) How many ways can you think of checking the numerical solution, find as manyas you can, and do the check. The list is started here:i. k = 0, all else arbitrary: The motion is parabolic flight (including fallingstraight down as a special case) [Why? The system is then just ballisticsfrom freshman physics];ii. x0 = 0, vx0 = 0, all else arbitrary: The motion stays on the y axis [Why?There is no force in the x direction if the mass is on the y axis. Becausethe initial velocity has no x component, the mass never leaves the y axis;iii. g = 0,*v0 =*0, all else is arbitrary: The motion stays on a radial line. And,if the motion does not cross the origin, the motion is that of a harmonicoscillator (sinusoidal oscillations, check by plotting, say x vt t. [Why? Writethe EoM and EoMs in polar coordinates⇒ mr¨ = −k(r − L0) ⇒ the harmonic oscillator equation, mr¨∗ =−kr∗, where r∗ ≡ r − L0.iv. L0 = 0, all else is arbitrary: ? . [Why? ? .] Hint, this onespecial case is problem 10, below.v. etc.vi. etc.vii. . . .
+> 6\. **Spring and mass (2D).** One end of of a negligible-mass spring (k, L0) is pinned to the origin, the other to a mass (m). There is gravity (g). Initial Conditions (ICs): The initial position is $\vec{r}\_0 = x\_0\hat{i} + y\_0\hat{j}$, and the initial velocity is $\vec{v}\_0 = v\_{x0}\hat{i} + v\_{y0}\hat{j}$. Motion starts at $t = 0$ and ends at tend.  
+> 
+>     (a) Find the Equations of Motion (EoM);  
+>     (b) Assume all parameters and IC’s above are given.  
+>         i. Plot the trajectory of the mass.  
+>         ii. Animate the trajectory of the mass.  
+>     (c) How many ways can you think of checking the numerical solution, find as manyas you can, and do the check. The list is started here:
+>         i. k = 0, all else arbitrary: The motion is parabolic flight (including fallingstraight down as a special case) [Why? The system is then just ballisticsfrom freshman physics];
+>         ii. x0 = 0, vx0 = 0, all else arbitrary: The motion stays on the y axis [Why?There is no force in the x direction if the mass is on the y axis. Becausethe initial velocity has no x component, the mass never leaves the y axis;
+>         iii. g = 0,*v0 =*0, all else is arbitrary: The motion stays on a radial line. And,if the motion does not cross the origin, the motion is that of a harmonicoscillator (sinusoidal oscillations, check by plotting, say x vt t. [Why? Writethe EoM and EoMs in polar coordinates⇒ mr¨ = −k(r − L0) ⇒ the harmonic oscillator equation, mr¨∗ =−kr∗, where r∗ ≡ r − L0.
+>         iv. L0 = 0, all else is arbitrary: ? . [Why? ? .] Hint, this onespecial case is problem 10, below.v. etc.vi. etc.vii. . . .  
 
 Since I already did all of this pretty much in problem 1. I will instead write a simple lorentz system and animate it here.
 
@@ -72,6 +78,6 @@ println("Animation saved as lorenz_animation.gif")
 
 This produces the following animation:
 
-![Lorentz system animation](../media/problem-06/lorentz_animation.gif)
+![../media/problem06/lorentz_attractor.gif](../media/problem06/lorentz_attractor.gif)
 
-Is there a way to think about verifying lorentz system solutions? I haven't though through this yet.
+Is there a way to think about verifying lorentz system solutions? I haven't thought through this yet.

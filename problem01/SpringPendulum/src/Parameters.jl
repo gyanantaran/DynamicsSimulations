@@ -8,6 +8,6 @@ struct Param
     restinglen::Float64
 end
 
-Param(;m=1.0, g=10.0, c=1.0, k=1.0, l₀=1.0) = Param(m, g, c, k, l₀)
+Param(; m = 1.0, g = 10.0, c = 1.0, k = 1.0, l₀ = 1.0) = Param(m, g, c, k, l₀)
 
 end
