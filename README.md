@@ -1,5 +1,5 @@
 ---
-title: "Dynamics"
+title: "dynamics"
 author: "Vishal Paudel"
 date: "2025/01/24"
 permalink: /dynamics/
