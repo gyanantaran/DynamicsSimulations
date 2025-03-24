@@ -214,4 +214,54 @@ function plot_tolerances_vs_error(xs, ys, zs)
     GLMakie.display(fig)
 end
 
+function plot_all_trajectories(
+    sols;
+    title = "Ballistics with Increasing initial velocity",
+    filename = "initial_velocity_change.png",
+)
+    # plotting
+    fig = GLMakie.Figure()
+    ax = GLMakie.Axis(fig[1, 1], xlabel = "x", ylabel = "y", title = title, aspect = 1)
+
+    for sol in sols
+        sol_state = sol.u
+        sol = reduce(hcat, sol_state)'
+
+        x = view(sol, :, 1)
+        y = view(sol, :, 2)
+
+        numeric_plot = GLMakie.lines!(ax, x, y)
+    end
+    GLMakie.save(filename, fig)
+    GLMakie.display(fig)
+end
+
+function plot_best_angle_vs_speed(
+    speeds,
+    bestangles,
+    title = "Initial speed vs Best angle (c=10)",
+    filename = "speed_vs_bestangle_c_10.png",
+)
+    # plotting
+    fig = GLMakie.Figure()
+    ax = GLMakie.Axis(fig[1, 1], xlabel = "speeds", ylabel = "bestangles", title = title)
+    speed_vs_bestangles = GLMakie.lines!(ax, speeds, bestangles)
+    GLMakie.save(filename, fig)
+    GLMakie.display(fig)
+end
+
+function plot_best_angle_vs_drag(
+    speeds,
+    bestangles,
+    title = "Drag vs Best angle (v=1200)",
+    filename = "best_angle_vs_drag.png",
+)
+    # plotting
+    fig = GLMakie.Figure()
+    ax = GLMakie.Axis(fig[1, 1], xlabel = "drags", ylabel = "bestangles", title = title)
+    speed_vs_bestangles = GLMakie.lines!(ax, speeds, bestangles)
+    GLMakie.save(filename, fig)
+    GLMakie.display(fig)
+end
+
 end # module Visualization

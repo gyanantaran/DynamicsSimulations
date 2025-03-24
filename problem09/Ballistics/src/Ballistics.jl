@@ -4,6 +4,7 @@ using DifferentialEquations
 using UnPack
 using LinearAlgebra
 using GLMakie
+using Infinity
 
 include("Parameters.jl")
 include("Physics.jl")
@@ -72,5 +73,79 @@ end
 
 # (xs, ys, zs) = Benchmarks.tolerances_vs_error(prob, analytical_solve)
 # Visualization.plot_tolerances_vs_error(xs, ys, zs)
+
+
+function solve_till_empty(prob)
+    conditionatbeggining(u, t, integrator) = t > 0
+    removetstop!(integrator) = add_tstop!(integrator, ∞)
+    removetstopwhenbeginning = DiscreteCallback(conditionatbeggining, removetstop!)
+
+    condition(u, t, integrator) = u[2] < 0
+    affect!(integrator) = terminate!(integrator)
+    stopwhenonground = DiscreteCallback(condition, affect!)
+
+    cb = CallbackSet(removetstopwhenbeginning, stopwhenonground)
+    sol = solve(prob, RK4(), callback = cb, tstops = [0.1])
+
+    sol
+end
+
+function problem_setup(launchangle, speed0, c)
+    x0, y0 = 0.0, 0.0
+    r0 = [x0; y0]
+    vx0, vy0 = speed0 * [cos(launchangle); sin(launchangle)]
+    v0 = [vx0; vy0]
+    u0 = [r0; v0]
+
+    t0 = 0.0
+    tend = 1.0
+    tspan = (t0, tend)
+    p = Parameters.Param(m = 1, g = 1, c = c)
+    prob = ODEProblem(Physics.ballistic!, u0, tspan, p)
+    return prob
+end
+
+
+# speeds = range(0, 100)
+# problems = problem_setup.(Ref(pi/4), speeds, Ref(1))
+# sols = solve_till_empty.(problems)
+# Visualization.plot_all_trajectories(sols)
+
+function best_angle_for_speed(speed0, c)
+    launchangles = pi / 4 .* ((range(-1.0, 1.0, 300)) .^ 3.0 .+ 1.0)
+
+    max_range = 0
+    argmax_theta = 0
+    for launchangle in launchangles
+        # problem setup
+        prob = problem_setup(launchangle, speed0, c)
+
+        sol = solve_till_empty(prob)
+        cur_range = sol.u[end][1]
+        if cur_range > max_range
+            max_range = cur_range
+            argmax_theta = launchangle
+        end
+    end
+    argmax_theta
+end
+
+# speeds = 10.0 .^ range(0.0, 3.1, 100)
+# bestangles = []
+# for speed0 in speeds
+#     bestangle = best_angle_for_speed(speed0, 10)
+#     push!(bestangles, bestangle)
+# end
+# Visualization.plot_best_angle_vs_speed(speeds, bestangles)
+
+
+# speed0 = 1200.0
+# bestangles = []
+# drags = 2.0 .^ range(1.0, 5.0)
+# for c in drags
+#     bestangle = best_angle_for_speed(speed0, c)
+#     push!(bestangles, bestangle)
+# end
+# Visualization.plot_best_angle_vs_drag(drags, bestangles)
 
 end # module Ballistics
