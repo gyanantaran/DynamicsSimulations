@@ -155,7 +155,9 @@ Visualization.makie_animation(sol)
 #...
 ```
 
+::: {.column-margin}
 TODO: TODO of problem 01: visualisation springs
+:::
 
 ![Two Spring Pendulum Animation without any info](../media/problem03/two_spring_pendulum.gif)
 

@@ -132,7 +132,9 @@ end
 # Animation
 The following shows the animation for the solution system. The code corresponding to this animation:
 
+::: {.column-margin}
 TODO: add springs to visualise
+:::
 
 ![Spring Pendulum Motion](../media/problem01/sol_animation.gif)
 

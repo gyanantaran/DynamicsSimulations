@@ -1,5 +1,5 @@
 ---
-title: "problem-02"
+title: "problem02"
 author: "Vishal Paudel"
 date: "2025/01/24"
 ---
