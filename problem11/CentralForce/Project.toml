@@ -1,0 +1,16 @@
+name = "CentralForce"
+uuid = "ec47bd6e-64a2-49e2-b9c5-3da48b3ea0ee"
+authors = ["vishal <95016059+gyanantaran@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+NonlinearSolve = "8913a72c-1f9b-4ce2-8d82-65094dcecaec"
+
+[compat]
+DifferentialEquations = "7.16.1"
+GLMakie = "0.11.3"
+LinearAlgebra = "1.11.0"
+NonlinearSolve = "4.5.1"
