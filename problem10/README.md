@@ -1,0 +1,67 @@
+---
+title: "problem10"
+author: "Vishal Paudel"
+date: "2025/03/25"
+---
+
+> 10\. Mass hanging from spring. 3D. Consider a point mass hanging from a zero-restlength linear spring (`0 = 0) in a constant gravitational field.
+> 
+>     a) Set up equations. Set up for numerical solution. Plot 2D projection of 3D trajectories.
+>     b) By playing around with initial conditions, find the most wild motion you can find (wild means most wiggles, or most complicated). Make one or more revealing plots. [Hint: Make sure the features you observe are properties of the system and not due to numerical errors. That is, check that the features do not change when the numerics is refined.]
+>     c) Using analytical methods justify your answer to part (b).
+>
+> ![../media/problem10/problem10.png](../media/problem10/problem10.png)
+
+# a. Plot 2D projection of 3D trajectories
+
+In file [./SpringPendulum3D/src/Physics.jl](./SpringPendulum3D/src/Physics.jl)
+
+```julia
+function spring_pendulum3d!(du, u, p::Parameters.Param, t)
+    @unpack mass, gravity, stiffness, restinglen#=, viscosity=# = p
+
+    r⃗ = u[1:3]
+    v⃗ = u[4:6]
+
+    k = [0.0; 0.0; 1.0]
+    gravity = mass * gravity * (-k)
+    spring = stiffness * (norm(r⃗) - restinglen) * (-normalize(r⃗))
+    # drag = -viscosity * v⃗
+
+    force = (spring #=+ drag =#+ gravity)
+
+    du[1:3] = v⃗
+    du[4:6] = force / mass
+end
+```
+
+The 3D trajectories look like ellipses. For a particular set of parameters, given in the following
+
+![../media/problem10/trajectory_plot.png](../media/problem10/trajectory_plot.png)
+
+```julia
+# ...
+
+# problem setup
+x₀, y₀, z₀ = (1, 0, 0)
+r₀ = [x₀; y₀; z₀]
+v₀ = [0.0; 1.0; 0.0]
+u₀ = [r₀; v₀]
+tspan = (0.0, 10.0)
+p = Parameters.Param(m = 1, g = 1, k = 2, l₀ = 0)
+prob = ODEProblem(Physics.spring_pendulum3d!, u₀, tspan, p)
+
+# ...
+```
+
+The 2D projection onto the xy, yz, zx respectively, are as follows:
+
+![../media/problem10/trajectory_plot_projection.png](../media/problem10/trajectory_plot_projection.png)
+
+# b. Play around with initial conditions, and find the most wild motions
+
+I was not able to find any wild motions, other than numerical errors.
+
+# c. Analytically justify answer to part (b)
+
+If we look at the differential equations, it is equivalent to having three independent springs in the three mutually orthogonal directions with a constant shift in the 'z-spring' due to gravity.
