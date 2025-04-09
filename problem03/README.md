@@ -235,7 +235,9 @@ Since my current implementation saves updated state at each step, benchmarking f
 
 ![Step sizes vs AbsError](../media/problem03/benchmark_result.png)
 
+::: {.column-margin}
 TODO: fix memory issue and go till 1e-15
+:::
 
 I have done some deep (very small) comparision of `Midpoint` and `RK4` in [./problem09/README.md](./problem09/README.md)
 
