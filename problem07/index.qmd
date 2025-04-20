@@ -4,7 +4,7 @@ author: "Vishal Paudel"
 date: "2025/02/24"
 ---
 
-> 7. Simple animation of a shape. Draw a picture of some object (a face, a house, whatever), and make it move around on the screen in a smooth and interesting way. No distortions. Just motions and rotations
+> 7\. Simple animation of a shape. Draw a picture of some object (a face, a house, whatever), and make it move around on the screen in a smooth and interesting way. No distortions. Just motions and rotations
 
 
 In file [./simple_animation.jl](./simple_animation.jl):

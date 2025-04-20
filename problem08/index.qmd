@@ -4,7 +4,7 @@ author: "Vishal Paudel"
 date: "2025/02/25"
 ---
 
-> 8. Simplest dynamics with Polar coordinates. This is the simplest dynamics problem, but posed in polar coordinates. Assume a particle is on a plane with no force on it. So, you know it moves at constant speed in a constant direction.
+> 8\. Simplest dynamics with Polar coordinates. This is the simplest dynamics problem, but posed in polar coordinates. Assume a particle is on a plane with no force on it. So, you know it moves at constant speed in a constant direction.
 >     a. Write the differential equations $\vec{a} = \vec{0}$ in polar coordinates.
 >     b. Solve them numerically for various initial conditions.
 >     c. Plot the solution and check that the motion is a straight line at constant speed.

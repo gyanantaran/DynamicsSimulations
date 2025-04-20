@@ -2,27 +2,20 @@
 title: "Dynamics"
 author: "Vishal Paudel"
 date: "2025/01/24"
+title-block-banner: url('https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/AI_Control__Improving_Safety_Des_an_electronic_box__wrapped_in_ch_0.8946293920889252/h4q5o7ecj4yzky4zyjql')
+
+listing:
+  contents: .
+
+format:
+  html: 
+    grid:
+      body-width: 1500px
+      margin-width: 1000px
+max-width: 1500px
+sidebar: false
 ---
 
-# Dynamics Simulations
-
-## Problems
-
-1. [./problem01](./problem01/README.md)
-2. [./problem02](./problem02/README.md)
-3. [./problem03](./problem03/README.md)
-4. [./problem04](./problem04/README.md)
-5. [./problem05](./problem05/README.md)
-6. [./problem06](./problem06/README.md)
-7. [./problem07](./problem07/README.md)
-8. [./problem08](./problem08/README.md)
-9. [./problem09](./problem09/README.md)
-10. [./problem10](./problem10/README.md)
-11. [./problem11](./problem11/README.md)
-12. [./problem12](./problem12/README.md)
-13. [./problem13](./problem13/README.md)
-13. [./problem13](./problem13/README.md)
-14. [./problem14](./problem14/README.md)
-15. [./problem15](./problem15/README.md)
-
-[@vishalpaudel](https://github.com/vishalpaudel)
+::: {.column-margin}
+![](https://res.cloudinary.com/lesswrong-2-0/image/upload/c_crop,g_custom/c_fill,dpr_auto,q_auto,f_auto,g_auto:faces/ohabryka_Topographic_aquarelle_book_cover_by_Thomas_W._Schaller_f9c9dbbe-4880-4f12-8ebb-b8f0b900abc1_m4k6dy_734413)
+:::

@@ -4,7 +4,7 @@ author: "Vishal Paudel"
 date: "2025/01/24"
 ---
 
-> 1. Set up (define system, draw FBD, write ODEs) a particle problem. Just one particle. 2D or 3D, your choice. Use a force, or forces that you like (gravity, spring, air friction). Any example of interest. Find a numerical solution. Graph it. Animate it. Try to make an interesting observation.
+> 1\. Set up (define system, draw FBD, write ODEs) a particle problem. Just one particle. 2D or 3D, your choice. Use a force, or forces that you like (gravity, spring, air friction). Any example of interest. Find a numerical solution. Graph it. Animate it. Try to make an interesting observation.
 
 # System Description and Free Body Diagram
 
@@ -15,7 +15,7 @@ The system experiences:
 - Gravitational force $\vec{F_g} = mg(-\hat{j})$
 - Damping force $\vec{F_d} = cv(-\hat{v})$
 
-![Freebody-diagram](../media/problem01/problem01-fbd.jpeg)
+![Freebody-diagram](../media/problem01/problem01-fbd.jpeg){width=50%}
 
 # Equations of Motion
 
