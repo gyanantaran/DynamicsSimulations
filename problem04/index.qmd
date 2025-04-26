@@ -2,7 +2,7 @@
 title: "problem04"
 author: "Vishal Paudel"
 date: "2025/02/04"
-image: "https://mathinsight.org/media/image/image/dot_product_projection_unit_vector.png"
+image: ../media/problem04/problem04-dot_product_projection_unit_vector.png
 ---
 
 > 4\. **Cross product: geometry vs components.**  

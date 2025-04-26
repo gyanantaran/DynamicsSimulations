@@ -332,7 +332,7 @@ u⃗₀ = [r⃗; v⃗]
 plot_solution(u⃗₀, tend)
 ```
 
-We get the **very periodic** orbit, 'very' meaning I dont have an analytical proof yet but have tested it for `tend=5000`:
+We get the **surely periodic** orbit, 'surely periodic' meaning I dont have an analytical proof yet but have tested it for `tend=5000`:
 
 ![problem11-hillinvalley-trajectory.png](../media/problem11/problem11-hillinvalley-trajectory.png)
 
