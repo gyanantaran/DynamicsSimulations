@@ -2,9 +2,10 @@
 title: "problem04"
 author: "Vishal Paudel"
 date: "2025/02/04"
+image: "https://mathinsight.org/media/image/image/dot_product_projection_unit_vector.png"
 ---
 
-> 4\. *Cross product: geometry vs components.*  
+> 4\. **Cross product: geometry vs components.**  
 > 
 >     a) The geometric definition of crossproduct is this $\vec{a} \times \vec{b}$ is a vector $\vec{c}$ with magnitude $\|\vec{a}\|\|\vec{b}\|\sin\theta_{ab}$ that is orthmorogonal to $\vec{a}$ and $vec{b}$ in the direction given by the right hand rule. Use this definition to findan alternative geometric definition involving projection (namely: project $\vec{b}$ onto theplane that is orthogonal to $\vec{a}$; then stretch it by $\vec{|a|}$; then rotate it $\pi/2$ around the $\vec{a}$ axis). Use that definition to show the distributive rule $\vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$.  
 >     b) Then use the distributive rule to find the component formula for cross product,namely that $\vec{a} \times \vec{b} = (a_2 b_3 − a_3 b_2)\hat{e}_1 + (a_3 b_1 − a_1 b_3) \hat{e}_2 + (a_1 b_2 − a_2 b_1)\hat{e}_3$.  

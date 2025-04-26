@@ -4,7 +4,7 @@ author: "Vishal Paudel"
 date: "2025/02/26"
 ---
 
-> 9\. Canon ball. A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude $\|c
+> 9\. **Canon ball.** A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude $\|c
 \vec{v}\|$.  
 >
 >     (a) Find position vs time analytically.  

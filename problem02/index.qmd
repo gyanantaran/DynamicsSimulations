@@ -2,9 +2,10 @@
 title: "problem02"
 author: "Vishal Paudel"
 date: "2025/01/24"
+image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrh9Z1XneDDfqx4-YBj28IMjYZ9o-goIqgEg&s"
 ---
 
-> 2\. $\quad$ 3D. Get good at vectors. Assume that the positions relative to an origin of four random points, which are randomly located in space are given as $\vec{\mathbf{r}}_A$, $\vec{\mathbf{r}}_B$, $\vec{\mathbf{r}}_C$ and $\vec{\mathbf{r}}_D$. Assume force $\vec{\mathbf{F}}$ is given. For each problem below write a single vector formula (one for each problem) that answers the question.  
+> 2\. **3D. Get good at vectors.** Assume that the positions relative to an origin of four random points, which are randomly located in space are given as $\vec{\mathbf{r}}_A$, $\vec{\mathbf{r}}_B$, $\vec{\mathbf{r}}_C$ and $\vec{\mathbf{r}}_D$. Assume force $\vec{\mathbf{F}}$ is given. For each problem below write a single vector formula (one for each problem) that answers the question.  
 > 
 >     a) The points A and B define an infinite line. So do the points C and D. Find the distance between these two lines. ‘The’ distance means ‘the minimum distance’, that is the length of the shortest line segment connecting the two lines. Either write a formula (or sequence of formulas), or write computer code that gives the answer, or both.  
 >     b) Same problem as above, but also find the end points of the shortest line segment.  

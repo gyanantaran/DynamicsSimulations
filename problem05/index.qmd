@@ -2,9 +2,10 @@
 title: "problem05"
 author: "Vishal Paudel"
 date: "2025/01/24"
+image: "http://ruina.tam.cornell.edu/Book/Cover1-15-13.jpg"
 ---
 
-> 5\. Read up.  
+> 5\. **Read up.**  
 > 
 >     a. Read all of the course Teams posts so far, trying out all possible links of interest.  
 >     b. Make sure you thoroughly understand these sections of the Ruina/Pratap pdf book, available from Ruina’s www page:  
