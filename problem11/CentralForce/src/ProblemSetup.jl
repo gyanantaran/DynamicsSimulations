@@ -14,9 +14,7 @@ m = 1.0
 k = 1.0
 p = Param(m, k)
 
-# ode! = Physics.create_ode(Physics.inversecube)
-# ode! = Physics.create_ode(Physics.speedindependentofradius)
-ode! = Physics.create_ode(Physics.dipolepowerlaw)
+ode! = Physics.centralforce!
 
 function create_problem(ode, u⃗₀, tend, p)
     tstart = 0.0
