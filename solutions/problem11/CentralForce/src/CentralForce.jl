@@ -1,5 +1,7 @@
 module CentralForce
 
+hello
+
 import DifferentialEquations
 import GLMakie
 import NonlinearSolve

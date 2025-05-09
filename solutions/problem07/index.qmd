@@ -56,4 +56,4 @@ end
 
 Produces this animation:
 
-![Floating house in space](../media/problem07/rotating_house.gif)
+![Floating house in space](../../media/problem07/rotating_house.gif)

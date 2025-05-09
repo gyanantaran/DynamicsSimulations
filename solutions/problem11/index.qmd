@@ -13,7 +13,7 @@ date: "2025/04/02"
 > 
 > \[Matlab hint: To do this properly you probably need to guess at a radial force law (most anything will work) and do numerical root finding (e.g., `FSOLVE`) to find initial conditions and the period of the orbit. Once you have your system you can define a function whose input is the initial conditions and the time of integration and whose output is the difference between the initial state and the final state. You can make this system ‘square’ by assuming that the particle is on the x axis in the initial state. You want to find that input which makes the output the zero vector. Pick a central force and search over initial conditions and durations. Do not use `FSOLVE` to search over force laws; do your orbit finding using a given force law\]
 >
-> ![../media/problem11/problem11.png](../media/problem11/problem11.png)
+> ![../../media/problem11/problem11.png](../../media/problem11/problem11.png)
 
 # (a) Find a central force law $F(r)$ so that, comparing circular orbits of varying radii, the speed v is independent of radius.
 
@@ -38,7 +38,7 @@ sol = DifferentialEquations.solve(ode_prob)
 
 This produces:
 
-![../media/problem11/problem11_trajectory_central_force.png](../media/problem11/problem11_trajectory_central_force.png)
+![../../media/problem11/problem11_trajectory_central_force.png](../../media/problem11/problem11_trajectory_central_force.png)
 
 the trajectory for non-tangential inital velocity:
 
@@ -87,7 +87,7 @@ end
 
 The graph for this magnitude of this central force field looks like this:
 
-![Dipole power law](../media/problem11/problem11-dipolepowerlaw-graph.png)
+![Dipole power law](../../media/problem11/problem11-dipolepowerlaw-graph.png)
 
 For any such `function centralforce!(du, u::State, p::Parameters, tend:Time)::State`, we want to find a $\vec{u}_0$ such that, for $\vec{u}_t$ = `DifferentialEquations.solve(odeprob)[end]`
 
@@ -309,7 +309,7 @@ end
 
 The graph of the magnitude of this force field:
 
-![problem11-hillinvalley-graph.png](../media/problem11/problem11-hillinvalley-graph.png)
+![problem11-hillinvalley-graph.png](../../media/problem11/problem11-hillinvalley-graph.png)
 
 With the follwoing intiial conditions, in file [./CentralForce/src/CentralForce.jl](./CentralForce/src/CentralForce.jl):
 
@@ -334,6 +334,6 @@ plot_solution(u⃗₀, tend)
 
 We get the **surely periodic** orbit, 'surely periodic' meaning I dont have an analytical proof yet but have tested it for `tend=5000`:
 
-![problem11-hillinvalley-trajectory.png](../media/problem11/problem11-hillinvalley-trajectory.png)
+![problem11-hillinvalley-trajectory.png](../../media/problem11/problem11-hillinvalley-trajectory.png)
 
 The inconsistent use of `code blocks` and $math blocks$ was an intentional fast.

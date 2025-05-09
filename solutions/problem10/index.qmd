@@ -10,7 +10,7 @@ date: "2025/03/25"
 >     b) By playing around with initial conditions, find the most wild motion you can find (wild means most wiggles, or most complicated). Make one or more revealing plots. [Hint: Make sure the features you observe are properties of the system and not due to numerical errors. That is, check that the features do not change when the numerics is refined.]
 >     c) Using analytical methods justify your answer to part (b).
 >
-> ![../media/problem10/problem10.png](../media/problem10/problem10.png)
+> ![../../media/problem10/problem10.png](../../media/problem10/problem10.png)
 
 # a. Plot 2D projection of 3D trajectories
 
@@ -37,7 +37,7 @@ end
 
 The 3D trajectories look like ellipses. For a particular set of parameters, given in the following
 
-![../media/problem10/trajectory_plot.png](../media/problem10/trajectory_plot.png)
+![../../media/problem10/trajectory_plot.png](../../media/problem10/trajectory_plot.png)
 
 ```julia
 # ...
@@ -56,7 +56,7 @@ prob = ODEProblem(Physics.spring_pendulum3d!, u₀, tspan, p)
 
 The 2D projection onto the xy, yz, zx respectively, are as follows:
 
-![../media/problem10/trajectory_plot_projection.png](../media/problem10/trajectory_plot_projection.png)
+![../../media/problem10/trajectory_plot_projection.png](../../media/problem10/trajectory_plot_projection.png)
 
 # b. Play around with initial conditions, and find the most wild motions
 

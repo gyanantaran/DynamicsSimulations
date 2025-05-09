@@ -15,7 +15,7 @@ The system experiences:
 - Gravitational force $\vec{F_g} = mg(-\hat{j})$
 - Damping force $\vec{F_d} = cv(-\hat{v})$
 
-![Freebody-diagram](../media/problem01/problem01-fbd.jpeg){width=50%}
+![Freebody-diagram](../../media/problem01/problem01-fbd.jpeg){width=50%}
 
 # Equations of Motion
 
@@ -91,7 +91,7 @@ end # module SpringPendulum
 
 Plot showing the system evolution in phase space. In file [./SpringPendulum/src/Visualization.jl](./SpringPendulum/src/Visualization.jl):
 
-![Left: Trajectory plot. Right: Theta vs Time](../media/problem01/trajectory_plot.png)
+![Left: Trajectory plot. Right: Theta vs Time](../../media/problem01/trajectory_plot.png)
 
 Code corresponding to this in file [SpringPendulum/src/Visualization.jl](SpringPendulum/src/Visualization.jl):
 
@@ -136,7 +136,7 @@ The following shows the animation for the solution system. The code correspondin
 TODO: add springs to visualise
 :::
 
-![Spring Pendulum Motion](../media/problem01/sol_animation.gif)
+![Spring Pendulum Motion](../../media/problem01/sol_animation.gif)
 
 The code corresponding to this animation is in file [./SpringPendulum/src/Visualization.jl](./SpringPendulum/src/Visualization.jl):
 

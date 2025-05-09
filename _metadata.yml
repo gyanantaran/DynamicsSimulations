@@ -1,8 +1,0 @@
-format:
-  html: 
-    grid:
-      sidebar-width: 200px
-      body-width: 1500px
-      margin-width: 1000px
-max-width: 1500px
-sidebar: dynamics

@@ -78,7 +78,7 @@ println("Animation saved as lorenz_animation.gif")
 
 This produces the following animation:
 
-![../media/problem06/lorentz_attractor.gif](../media/problem06/lorentz_attractor.gif)
+![../../media/problem06/lorentz_attractor.gif](../../media/problem06/lorentz_attractor.gif)
 
 The code given on `Makie.jl` library website:
 
@@ -131,6 +131,6 @@ end
 
 This produces:
 
-![../media/problem06/lorenz_makie.gif](../media/problem06/lorenz_makie.gif)
+![../../media/problem06/lorenz_makie.gif](../../media/problem06/lorenz_makie.gif)
 
 Is there a way to think about verifying lorentz system solutions? I haven't thought through this yet.

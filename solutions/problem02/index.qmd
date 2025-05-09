@@ -2,7 +2,7 @@
 title: "problem02"
 author: "Vishal Paudel"
 date: "2025/01/24"
-image: ../media/problem02/problem02-shortest-distance-cover.png
+image: ../../media/problem02/problem02-shortest-distance-cover.png
 ---
 
 > 2\. **3D. Get good at vectors.** Assume that the positions relative to an origin of four random points, which are randomly located in space are given as $\vec{\mathbf{r}}_A$, $\vec{\mathbf{r}}_B$, $\vec{\mathbf{r}}_C$ and $\vec{\mathbf{r}}_D$. Assume force $\vec{\mathbf{F}}$ is given. For each problem below write a single vector formula (one for each problem) that answers the question.  

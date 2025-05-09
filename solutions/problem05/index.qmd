@@ -2,7 +2,7 @@
 title: "problem05"
 author: "Vishal Paudel"
 date: "2025/01/24"
-image: ../media/problem05/ruina-pratap-cover.jpg
+image: ../../media/problem05/ruina-pratap-cover.jpg
 ---
 
 > 5\. **Read up.**  

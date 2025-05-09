@@ -1,0 +1,6 @@
+sidebar: dynamics
+
+format:
+  html: 
+    grid:
+      margin-width: 1000px

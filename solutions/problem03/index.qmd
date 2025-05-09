@@ -145,7 +145,7 @@ GLMakie.display(trajectory_plot)
 
 This generates the following trajectory:
 
-![Two Spring Pendulum](../media/problem03/two_spring_pendulum.png)
+![Two Spring Pendulum](../../media/problem03/two_spring_pendulum.png)
 
 For the animation, with some more interesting parameters, produces the following animation:
 
@@ -159,7 +159,7 @@ Visualization.makie_animation(sol)
 TODO: TODO of problem 01: visualisation springs
 :::
 
-![Two Spring Pendulum Animation without any info](../media/problem03/two_spring_pendulum.gif)
+![Two Spring Pendulum Animation without any info](../../media/problem03/two_spring_pendulum.gif)
 
 
 # b. Call RHS function inside solver
@@ -233,17 +233,22 @@ tail_match(sol1::ProblemTypes.Solution, sol2::ProblemTypes.Solution)::ProblemTyp
 
 Since my current implementation saves updated state at each step, benchmarking for progressively reducing step sizes takes a lot of memory on top of time. I will update the euler solver to not save at each time step, benchmark at smaller step sizes later. For now, for the step size, I have gone till 1e-6 and the plot for the benchmark, with `tail_match` is as follows:
 
-![Step sizes vs AbsError](../media/problem03/benchmark_result.png)
+![Step sizes vs AbsError](../../media/problem03/benchmark_result.png)
 
 ::: {.column-margin}
 TODO: fix memory issue and go till 1e-15
 :::
 
-I have done some deep (very small) comparision of `Midpoint` and `RK4` in [./problem09/README.md](./problem09/README.md)
+I have done some deep (very small) comparision of `Midpoint` and `RK4` in [../problem09](./problem09)
 
 ## Slither Charaterisation
 
 To do this, we create some histories with different step sizes. I have skipped this for now.
+
+::: {.column-margin}
+TODO: implement this
+:::
+
 
 # e. Use ODE45 with varying accuracies and conclude if matlab does a good job estimating its own accuracy.
 
