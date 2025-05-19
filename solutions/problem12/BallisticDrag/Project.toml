@@ -1,0 +1,12 @@
+name = "BallisticDrag"
+uuid = "614eb0da-4ad2-4a30-b784-70a8c7b32a41"
+authors = ["vishal <95016059+gyanantaran@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+
+[compat]
+DifferentialEquations = "7.16.1"
+GLMakie = "0.11.7"
