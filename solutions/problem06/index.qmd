@@ -2,6 +2,8 @@
 title: "problem06"
 author: "Vishal Paudel"
 date: "2025/01/24"
+
+image: ../../media/problem06/lorenz_makie.gif
 ---
 
 > 6\. **Spring and mass (2D).** One end of of a negligible-mass spring (k, L0) is pinned to the origin, the other to a mass (m). There is gravity (g). Initial Conditions (ICs): The initial position is $\vec{r}\_0 = x\_0\hat{i} + y\_0\hat{j}$, and the initial velocity is $\vec{v}\_0 = v\_{x0}\hat{i} + v\_{y0}\hat{j}$. Motion starts at $t = 0$ and ends at tend.  

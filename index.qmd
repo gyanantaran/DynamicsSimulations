@@ -11,5 +11,7 @@ sidebar: false
 ---
 
 ::: {.column-margin}
-![](media/topographic.jpeg)
+![Abstract Image](media/topographic.jpeg)
+
+This page lists all of the homework solutions to a set of problems in Dynamics and Simulations. I have used the Julia Programming Language.
 :::
