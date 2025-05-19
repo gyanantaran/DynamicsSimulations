@@ -1,0 +1,14 @@
+---
+title: "problem16"
+author: "Vishal Paudel"
+date: "2025/04/12"
+---
+
+> 16\. **Mechanics of two or more particles**
+>
+> (a) For two unequal particles with mass $m_1$ and $m_2$ what is the period of circular motion if the distance between the particles is $d$ and the only force is the force between them is from classical inverse-square Newtonian gravity, $F = Gm_1m_2/r^2$?
+> (b) Pick numbers for $G$, $m_1$, $m_2$ and $r$ and, using appropriate initial conditions, test your analytical result with a numerical simulation. Make any plots needed to make the agreement of your numerical and analytical results convincing.
+> (c) For three equal particles, $m_1 = m_2 = m_3 = 1$ and $G = 10$ what is the angular speed for circular motion on a circle with diameter of $d = 3$?
+> (d) Check your result for three particles with a numerical simulation, as you did for 2 particles, above.
+>
+> ![](../../media/problem16/problem16-fbd.png)

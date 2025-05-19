@@ -1,0 +1,20 @@
+---
+title: "problem15"
+author: "Vishal Paudel"
+date: "2025/04/12"
+---
+
+> 15\. **Potential Energy.** For each of the force fields below, find the associated potential energy function. All of them are 3D. In some cases the energy is associated with the positions of two particles. Any free constant can be set to a convenient value (like zero). The answers are easy, it sometimes takes careful multi-variable calculus to find or check them.
+> 
+> (a) Constant force $\vec{F} = -mg\hat{j}$. (Ans: $E_p = mgy$)
+> (b) Zero-rest-length spring, one end at origin $\vec{F} = -kr\hat{e}_r = -k \vec{r}$. (Ans: $E_p = kr^2/2$)
+> (c) Spring, one end at origin $\vec{F} = -k(\ell - \ell_0) \hat{e}_r$. (Ans: $E_p = k(\ell - \ell_0$)
+> (d) Inverse sqaure central force $\vec{F} = -C \vec{r}/r^3$. (Ans: E_p = -C/r)
+> (e) Central force, depending on r, $\vec{F} = -f(r)\hat{e}_r$. (Ans: $\int\limits_{r_0}^{r}f(r')dr'$, with with $r_0$ chosen so integral is not divergent)
+> (f) Spring between two points. (Ans: $E_p = -C/\ell_{12})
+> (g) Inverse square attraction between two points. (Ans: $E_p = -C/\ell_{12}$)
+> (h) Constant force $\vec{F} = -C \hat{\lambda}$. (Ans: $E_p = C \vec{r} \cdot \hat{\lambda}$)
+> (i) Force in x direction only depending on x, $\vec{F} = -f(x) \hat{i}$. (Ans: $\int \limits_{x_0}^x f(x')dx'$, with $x_0$ chosen so the integral is not divergent)
+
+
+

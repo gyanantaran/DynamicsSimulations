@@ -1,0 +1,16 @@
+---
+title: "problem13"
+author: "Vishal Paudel"
+date: "2025/04/12"
+---
+
+> 13\. **Statics vs Dynamics.** 2D. Equilibrium and dynamics of a point mass $m$ at $\vec{r}_{C}$. Gravity $g$ points down inf the minus $\hat{j}$ direction. Points A and B are anchored at $\vec{r}_A$ and $\vec{r}_B$. Springs and parallel dashpots connect the mass to A and B. The spring constants are $k_A$ and $k_B$. Their rest lengths are $L_A$ and $L_B$. Parallel to the springs are dashpots $c_A$ and $c_B$. The mass also has a drag force proportional to speed through the air $c_d$.
+> 
+> The dynamic state of the system is described with $z = [x, y, \dot{x}, \dot{y}]'$ and the static state by $z = [x, y, 0, 0]'$.
+> 
+> (a) Basic Statics. Given parameters and an initial guess, find an equilibrium position of this system. If you have an example you like, post it and people can compare solutions.
+> (b) Basic Dynamics. Given parameters and an initial condition, find the motion.
+> (c) All equilibria. Given parameters, attempt to find all equilibria. How many are there? By varying parameters, what is the most and least number of equilibrium points there can be?
+> (d) Stability of equilibrium. Given an equilibrium point, find it’s stability 2 ways: a) With a dynamic simulation near the equilibrium; and b) looking at the eigenvalues of the matrix describing the linearized equations of motion. Compare.
+>
+> Make appropriate plots, animations and comparisons.
