@@ -3,15 +3,16 @@ title: "Dynamics"
 description: "Homework [![pdf](media/pdf-icon.svg){height=20px}](./media/pdfs/iischomework.pdf) solutions in [![JuliaLang](media/julia-logo.svg){width=50px}](https://julialang.org) for a college course [![VideoCourse](media/youtube-logo.svg){height=20px}](https://vod.video.cornell.edu/playlist/dedicated/1_63mribxx/1_iuth5b2a) from Professor Andy Ruina [![AndyRuina](media/andy.svg){height=50px}](http://ruina.tam.cornell.edu)"
 title-block-banner: media/improving-ai-safety.jpeg
 
+page-layout: full
+sidebar: dynamics
+
 listing:
   contents: solutions
+  type: grid
+  grid-columns: 5
+  grid-item-border: false
+  grid-item-align: center
+  page-size: 20
 
-page-layout: full
-sidebar: false
+  filter-ui: true
 ---
-
-::: {.column-margin}
-![Abstract Image](media/topographic.jpeg)
-
-This page lists all of the homework solutions to a set of problems in Dynamics and Simulations. I have used the Julia Programming Language.
-:::

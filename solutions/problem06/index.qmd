@@ -6,21 +6,28 @@ date: "2025/01/24"
 image: ../../media/problem06/lorenz_makie.gif
 ---
 
-> 6\. **Spring and mass (2D).** One end of of a negligible-mass spring (k, L0) is pinned to the origin, the other to a mass (m). There is gravity (g). Initial Conditions (ICs): The initial position is $\vec{r}\_0 = x\_0\hat{i} + y\_0\hat{j}$, and the initial velocity is $\vec{v}\_0 = v\_{x0}\hat{i} + v\_{y0}\hat{j}$. Motion starts at $t = 0$ and ends at tend.  
-> 
->     (a) Find the Equations of Motion (EoM);  
->     (b) Assume all parameters and IC’s above are given.  
->         i. Plot the trajectory of the mass.  
->         ii. Animate the trajectory of the mass.  
->     (c) How many ways can you think of checking the numerical solution, find as manyas you can, and do the check. The list is started here:
->         i. k = 0, all else arbitrary: The motion is parabolic flight (including fallingstraight down as a special case) [Why? The system is then just ballisticsfrom freshman physics];
->         ii. x0 = 0, vx0 = 0, all else arbitrary: The motion stays on the y axis [Why?There is no force in the x direction if the mass is on the y axis. Becausethe initial velocity has no x component, the mass never leaves the y axis;
->         iii. g = 0,*v0 =*0, all else is arbitrary: The motion stays on a radial line. And,if the motion does not cross the origin, the motion is that of a harmonicoscillator (sinusoidal oscillations, check by plotting, say x vt t. [Why? Writethe EoM and EoMs in polar coordinates⇒ mr¨ = −k(r − L0) ⇒ the harmonic oscillator equation, mr¨∗ =−kr∗, where r∗ ≡ r − L0.
->         iv. L0 = 0, all else is arbitrary: ? . [Why? ? .] Hint, this onespecial case is problem 10, below.v. etc.vi. etc.vii. . . .  
+::: {.callout collapse=true}
+# 6\. **Spring and mass (2D).**
 
-Since I already did all of this pretty much in problem 1. I will instead write a simple lorentz system and animate it here.
+One end of of a negligible-mass spring (k, L0) is pinned to the origin, the other to a mass (m). There is gravity (g). Initial Conditions (ICs): The initial position is $\vec{r}_0 = x_0\hat{i} + y_0\hat{j}$, and the initial velocity is $\vec{v}_0 = v_{x0}\hat{i} + v_{y0}\hat{j}$. Motion starts at $t = 0$ and ends at tend.  
 
-In file [./lorentz_system.jl](./lorentz_system.jl):
+1. Find the Equations of Motion (EoM);  
+2. Assume all parameters and IC’s above are given.  
+    i. Plot the trajectory of the mass.  
+    ii. Animate the trajectory of the mass.  
+3. How many ways can you think of checking the numerical solution, find as manyas you can, and do the check. The list is started here:
+    i. k = 0, all else arbitrary: The motion is parabolic flight (including fallingstraight down as a special case) [Why? The system is then just ballisticsfrom freshman physics];
+    ii. x0 = 0, vx0 = 0, all else arbitrary: The motion stays on the y axis [Why?There is no force in the x direction if the mass is on the y axis. Becausethe initial velocity has no x component, the mass never leaves the y axis;
+    iii. g = 0,*v0 =*0, all else is arbitrary: The motion stays on a radial line. And,if the motion does not cross the origin, the motion is that of a harmonicoscillator (sinusoidal oscillations, check by plotting, say x vt t. [Why? Writethe EoM and EoMs in polar coordinates⇒ mr¨ = −k(r − L0) ⇒ the harmonic oscillator equation, mr¨∗ =−kr∗, where r∗ ≡ r − L0.
+    iv. L0 = 0, all else is arbitrary: ? . [Why? ? .] Hint, this onespecial case is problem 10, below.v. etc.vi. etc.vii. . . .  
+:::
+
+## Instead, simulating lorentz system
+
+Since I already did all of this pretty much in [`problem01`](../problem01/index.qmd). I will instead write a simple lorentz system and animate it here.
+
+::: {.callout collapse=true}
+# In file [`./lorentz_system.jl`](./lorentz_system.jl):
 
 ```julia
 using DifferentialEquations
@@ -77,12 +84,18 @@ end
 
 println("Animation saved as lorenz_animation.gif")
 ```
+:::
 
 This produces the following animation:
 
-![../../media/problem06/lorentz_attractor.gif](../../media/problem06/lorentz_attractor.gif)
+::: {#fig-mylorentz}
+![`../../media/problem06/lorentz_attractor.gif`](../../media/problem06/lorentz_attractor.gif)
 
-The code given on `Makie.jl` library website:
+My implementation of lorentz attractor animation.
+:::
+
+::: {.callout collapse=true}
+# The code given on `Makie.jl` library website:
 
 ```julia
 using GLMakie
@@ -130,9 +143,14 @@ record(fig, "lorenz_makie.gif", 1:120) do frame
     l.colorrange = (0, frame)
 end
 ```
+:::
 
 This produces:
 
-![../../media/problem06/lorenz_makie.gif](../../media/problem06/lorenz_makie.gif)
+::: {#fig-makielorenz}
+![`../../media/problem06/lorenz_makie.gif`](../../media/problem06/lorenz_makie.gif)
 
-Is there a way to think about verifying lorentz system solutions? I haven't thought through this yet.
+GLMakie Loretnz Animation
+:::
+
+Is there a way to think about verifying (insanity-checking) lorentz system solutions? I haven't thought through this yet.

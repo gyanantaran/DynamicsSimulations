@@ -4,17 +4,22 @@ author: "Vishal Paudel"
 date: "2025/01/24"
 ---
 
-> 3\. **More ODE & animation practice.** Take a simple set of ODEs. Use a set you like,e.g., harmonic oscillator, non-linear pendulum, the Lorentz system (look it up on the internet). Solve this set numerically 3 ways (see below), and understand the accuracy. The goal is that, by the time you hand in the homework, you can write and debug the assignment on your own without looking up anything (outside of trivial syntax things). And you always have a good sense of the accuracy of your solution.  
-> 
->     a. Method 1: as simply as possible, without ODE45, and without calling functions or anything like that. A single function or script file with no function calls (ok, plotting calls are ok). Just write a simple loop that implements Euler’s method with your ODE.  
->     b. With your own Euler solver function. Your main program should call your Euler solver. Your Euler solver should call a RHS (Right Hand Side) function.  
->     c. With ODE45.  
->     d. Using (b), solve the equations many times with progressively smaller step size, down to the smallest size you have patience for, and up to the largest size that isn’t crazy. As sensibly as possible, compare the results and use that comparison to estimate the accuracy of each solution. You should be able to find a method to estimate the accuracy of a numerical solution even without knowing the exact solution.  
->     e. Using ODE45, solve the equations with various accuracies (use ’reltol’ and ’abstol’, note MATLAB satisfies one or the other, whichever is easiest. So, if you want an accurate solution you need to make both ’reltol’ and ’abstol’ small). Does Matlab do a good job of estimating its own accuracy? Use suitable plots to make your point.  
+::: {.callout collapse=true}
+# 3\. **More ODE & animation practice.**
 
-# a. Write a single file or function write eulers method
+Take a simple set of ODEs. Use a set you like,e.g., harmonic oscillator, non-linear pendulum, the Lorentz system (look it up on the internet). Solve this set numerically 3 ways (see below), and understand the accuracy. The goal is that, by the time you hand in the homework, you can write and debug the assignment on your own without looking up anything (outside of trivial syntax things). And you always have a good sense of the accuracy of your solution.  
 
-In file [./ODESolvers/procedural.jl](./ODESolvers/procedural.jl):
+1. Method 1: as simply as possible, without ODE45, and without calling functions or anything like that. A single function or script file with no function calls (ok, plotting calls are ok). Just write a simple loop that implements Euler’s method with your ODE.  
+2. With your own Euler solver function. Your main program should call your Euler solver. Your Euler solver should call a RHS (Right Hand Side) function.  
+3. With ODE45.  
+4. Using (b), solve the equations many times with progressively smaller step size, down to the smallest size you have patience for, and up to the largest size that isn’t crazy. As sensibly as possible, compare the results and use that comparison to estimate the accuracy of each solution. You should be able to find a method to estimate the accuracy of a numerical solution even without knowing the exact solution.  
+5. Using ODE45, solve the equations with various accuracies (use ’reltol’ and ’abstol’, note MATLAB satisfies one or the other, whichever is easiest. So, if you want an accurate solution you need to make both ’reltol’ and ’abstol’ small). Does Matlab do a good job of estimating its own accuracy? Use suitable plots to make your point.  
+:::
+
+## Write a single file or function write eulers method
+
+::: {.callout collapse=true}
+# In file [./ODESolvers/procedural.jl](./ODESolvers/procedural.jl):
 
 ```julia
 #!/usr/bin/env julia
@@ -142,29 +147,44 @@ GLMakie.save("two_spring_pendulum.png", trajectory_plot)
 
 GLMakie.display(trajectory_plot)
 ```
+:::
 
 This generates the following trajectory:
 
-![Two Spring Pendulum](../../media/problem03/two_spring_pendulum.png)
+::: {#fig-p3traj layout-ncol=1}
+![`../../media/problem03/two_spring_pendulum.png`](../../media/problem03/two_spring_pendulum.png)
 
-For the animation, with some more interesting parameters, produces the following animation:
+System Evolution, Trajectory
+:::
+
+::: {.callout collapse=false}
+# For the animation, [`./ODESolvers/src/Visualization.jl`](./ODESolvers/src/Visualization.jl)
 
 ```julia
 #...
 Visualization.makie_animation(sol)
 #...
 ```
-
-::: {.column-margin}
-TODO: TODO of problem 01: visualisation springs
 :::
 
-![Two Spring Pendulum Animation without any info](../../media/problem03/two_spring_pendulum.gif)
+With some more interesting parameters, produces the following animation:
+
+::: {.column-margin}
+TODO: TODO of [`problem01`](../problem01/index.qmd): visualize springs
+:::
+
+::: {#fig-p3animation layout-ncol=1}
+
+![`../../media/problem03/two_spring_pendulum.gif`](../../media/problem03/two_spring_pendulum.gif)
 
 
-# b. Call RHS function inside solver
+Two Spring Pendulum, Animation
+:::
 
-I have modularised this very file into modules inside [./ODESolvers/src/ODESolvers.jl](./ODESolvers/src/ODESolvers.jl):
+## Call RHS function inside solver
+
+::: {.callout collapse=false}
+# I have modularised this very file into modules inside [./ODESolvers/src/ODESolvers.jl](./ODESolvers/src/ODESolvers.jl):
 
 ```julia
 module ODESolvers
@@ -182,10 +202,12 @@ Visualization.plot_trajectory_makie(sol, prob)
 
 end # module ODESolvers
 ```
+:::
 
-# c. Use ODE45 equivalent
+## Use ODE45 equivalent
 
-I use Julia package `DifferentialEquations` in file [./ODESolvers/src/ODESolvers.jl](./ODESolvers/src/ODESolvers.jl):
+::: {.callout collapse=false}
+# I use Julia package `DifferentialEquations` in file [./ODESolvers/src/ODESolvers.jl](./ODESolvers/src/ODESolvers.jl):
 
 ```julia
 module ODESolvers
@@ -212,36 +234,42 @@ Visualization.plot_trajectory_makie(sol_ode45.u, prob)
 
 end # module ODESolvers
 ```
+:::
 
-# d. Progressively change $\Delta h$ and compare solutions
+## Progressively change $\Delta h$ and compare solutions
 
 To compare methods, and so there solutions on progressively reducing step sizes, one idea I could come up with is comparing the 'Slither'(something which I name later) characteristic.
 
 I am taking the euclidean-norm of the difference of state vectors at equivalent timesteps (with linear interpolation), summing up all of these scalar deltas in a single metric, lets call this difference between two solutions the 'slither'. The basic idea is that on progressively reducing the step size, we expect the slither to progressively change, and since we expect there to be a perfect solution that we are targetting so specifically we expect the slither to progressively reduce.
 
-The rate of change of (roco) Slither with respect(wr) to the step size is what is of interest to us when comparing two different methods. Afterall, if on progressively reducing the step size, the slither goes very quickly to zero, then either the solution that the method converges to has some bias, or the solution that the method converges to is accurate, i.e either the method in question is precise or the method is accurate respectively. And we note here on Andy sir's word and his girlfriend's story that "every method converges very quickly, except euler's method". So we measure the 'roco' slither 'wr' step.
+The rate of change of (roco) Slither with respect to (wrt) to the step size is what is of interest to us when comparing two different methods. Afterall, if on progressively reducing the step size, the slither goes very quickly to zero, then either the solution that the method converges to has some bias, or the solution that the method converges to is accurate, i.e either the method in question is precise or the method is accurate respectively. And we note here on Andy sir's word and his girlfriend's story that "every method converges very quickly, except euler's method". So we measure the 'roco' slither 'wrt' step.
 
 It is interesting to note that there are many other methods to compare two solutions, one other I can think of is instead of tracking and characterising the Slither decay, I instead just take the euclidean norm of end state vector. Since I expect this to be much easier to implement in code, let's call this difference the 'TailMatch'. I will start with this.
 
-## TailMatch Characterisation
+### TailMatch Characterisation
 
-The 'tailmatch' is quite easily implemented in code, in file [./ODESolvers/src/Benchmarks.jl](./ODESolvers/src/Benchmarks.jl):
+::: {.callout collapse=false}
+# The 'tailmatch' is quite easily implemented in code, in file [./ODESolvers/src/Benchmarks.jl](./ODESolvers/src/Benchmarks.jl):
 
 ```julia
 tail_match(sol1::ProblemTypes.Solution, sol2::ProblemTypes.Solution)::ProblemTypes.AbsError = norm(sol2[end] - sol1[end])
 ```
+:::
 
 Since my current implementation saves updated state at each step, benchmarking for progressively reducing step sizes takes a lot of memory on top of time. I will update the euler solver to not save at each time step, benchmark at smaller step sizes later. For now, for the step size, I have gone till 1e-6 and the plot for the benchmark, with `tail_match` is as follows:
 
-![Step sizes vs AbsError](../../media/problem03/benchmark_result.png)
+::: {#fig-p3benchmark layout-ncol=1}
+![`../../media/problem03/benchmark_result.png`](../../media/problem03/benchmark_result.png)
 
+Step sizes vs AbsError
+:::
 ::: {.column-margin}
 TODO: fix memory issue and go till 1e-15
 :::
 
-I have done some deep (very small) comparision of `Midpoint` and `RK4` in [../problem09](./problem09)
+I have done some deep (very small) comparision of `Midpoint` and `RK4` in [../problem09](../problem09)
 
-## Slither Charaterisation
+### Slither Charaterisation
 
 To do this, we create some histories with different step sizes. I have skipped this for now.
 
@@ -250,7 +278,7 @@ TODO: implement this
 :::
 
 
-# e. Use ODE45 with varying accuracies and conclude if matlab does a good job estimating its own accuracy.
+## Use ODE45 with varying accuracies and conclude if matlab does a good job estimating its own accuracy.
 
 I not here the formula for step size based on reltol and abstol, which is the standard options for controlling stepping behavior.
 

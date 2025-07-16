@@ -4,34 +4,39 @@ author: "Vishal Paudel"
 date: "2025/04/12"
 ---
 
-> 12\. **Canon ball 2.** A cannon ball $m$ is launched at angle $\theta$ and speed $v_0$. It is acted on by gravity $g$ and a quadratic drag with magnitude $\|cv^2\|$.
-> 
-> (a) Find a numerical solution using $\theta = \pi/4$, $v_0 = 1$ m/s, $g = 1$ m/s$^2$, $m = 1$ kg.
-> (b) Numerically calculate (by integrating $\dot{W} = P$ along with the state variables) the work done by the drag force. Compare this with the change of the total energy. Make a plot showing that the difference between the two goes to zero as the integration gets more and more accurate.
-> 
-> ![](../../media/problem12/problem12-ballistic.png)
+::: {.callout collapse=true}
+# 12\. **Canon ball 2.**
 
-# (a) Find a numerical solution using $\theta = \pi/4$, $v_0 = 1$ m/s, $g = 1$ m/s$^2$, $m = 1$ kg.
+A cannon ball $m$ is launched at angle $\theta$ and speed $v_0$. It is acted on by gravity $g$ and a quadratic drag with magnitude $\|cv^2\|$.
 
-Taking also $c=1$. The solution comes out to be:
+1. Find a numerical solution using $\theta = \pi/4$, $v_0 = 1$ m/s, $g = 1$ m/s$^2$, $m = 1$ kg.
+1. Numerically calculate (by integrating $\dot{W} = P$ along with the state variables) the work done by the drag force. Compare this with the change of the total energy. Make a plot showing that the difference between the two goes to zero as the integration gets more and more accurate.
 
-```julia
-function analytical_sol(t)
-    m, g, c = p.mass, p.gravity, p.viscosity
+::::: {#fig-p12prob}
+![`../../media/problem12/problem12-ballistic.png`](../../media/problem12/problem12-ballistic.png)
 
-    u = zeros((4,))
-    u[1] = vx0 * (-c/m) * (exp((-c/m)*(t-t0)) - 1)
-    u[2] = ((vy0+(m*g/c))*(-c/m)*(exp((-c/m)*(t-t0)) - 1)) + ((-m*g/c)*(t-t0))
-    u[3] = (vx0) * (exp((-c/m)*(t-t0)))
-    u[4] = ((vy0) + (m*g/c)) * exp((-c/m)*(t-t0)) - (m*g/c)
+External Forces on System
+:::::
 
-    return u
-end
-```
+:::
 
-# (b) Numerically calculate (by integrating $\dot{W} = P$ along with the state variables) the work done by the drag force. Compare this with the change of the total energy. Make a plot showing that the difference between the two goes to zero as the integration gets more and more accurate.
+## Find a numerical solution using $\theta = \pi/4$, $v_0 = 1$ m/s, $g = 1$ m/s$^2$, $m = 1$ kg.
 
-I take this oppurtunity to implement the 'slither' for trajectory similarity, that was introduced in [problem03](../problem03/index.qmd):
+Same as in [`problem09`](../problem09/index.qmd)
+
+::: {#fig-p12traj}
+![`../../media/problem09/numerical_trajectory.png`](../../media/problem09/numerical_trajectory.png)
+
+System Evolution, Trajectory
+:::
+
+
+## Numerically calculate (by integrating $\dot{W} = P$ along with the state variables) the work done by the drag force. Compare this with the change of the total energy. Make a plot showing that the difference between the two goes to zero as the integration gets more and more accurate.
+
+I take this oppurtunity to implement the 'slither' for trajectory similarity, that was introduced
+
+::: {.callout collapse=true}
+# In file [`./BallisticDrag/src/BallisticDrag.jl`](./BallisticDrag/src/BallisticDrag.jl):
 
 ```julia
 module BallisticDrag
@@ -101,9 +106,14 @@ GLMakie.display(fig)
 
 end # module BallisticDrag
 ```
+:::
 
-This produces the following graph:
+This produces:
 
-![](../../media/problem12/tolerances_vs_total_energy_change_minus_drag_work_done.png)
+::: {#fig-p12tolvswork}
+![`../../media/problem12/tolerances_vs_total_energy_change_minus_drag_work_done.png`](../../media/problem12/tolerances_vs_total_energy_change_minus_drag_work_done.png)
+
+Tolerances vs Total Energy minus Drag work done
+:::
 
 This concludes my attempt of problem12.

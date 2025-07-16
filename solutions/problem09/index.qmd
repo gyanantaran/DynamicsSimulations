@@ -4,20 +4,29 @@ author: "Vishal Paudel"
 date: "2025/02/26"
 ---
 
-> 9\. **Canon ball.** A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude $\|c
-\vec{v}\|$.  
->
->     (a) Find position vs time analytically.  
->     (b) Find a numerical solution using θ = π/4, $v_0 = 1$ m/s, g = 1 m/s 2 , m = 1 kg, c = 1 kg/ s.  
->     (c) Compare the numeric and analytic solutions. At t = 2 how big is the error? How does the error depend on specified tolerances or step sizes?  
->     (d) Use larger and larger values of v0 and for each trajectory choose a time interval so the canon at least gets back to the ground. Plot the trajectories (using equal scale for the x and y axis. Plot all curves on one plot. As v → ∞ what is the eventual shape? [Hint: the answer is simple and interesting.]  
->     (e) For any given v0 there is a best launch angle θ ∗ for maximizing the range. As v0 → ∞ to what angle does θ ∗ tend? Justify your answer as best you can with careful numerics, analytical work, or both.  
-> 
-> ![../../media/problem09/problem09.png](../../media/problem09/problem09.png)
+::: {.callout collapse=true}
+# 9\. **Canon ball.**
 
-# Find position vs time analytically.
+A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude $\|c\vec{v}\|$.
 
-The corresponding code for this in file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
+1. Find position vs time analytically.  
+2. Find a numerical solution using θ = π/4, $v_0 = 1$ m/s, g = 1 m/s 2 , m = 1 kg, c = 1 kg/ s.  
+3. Compare the numeric and analytic solutions. At t = 2 how big is the error? How does the error depend on specified tolerances or step sizes?  
+4. Use larger and larger values of v0 and for each trajectory choose a time interval so the canon at least gets back to the ground. Plot the trajectories (using equal scale for the x and y axis. Plot all curves on one plot. As v → ∞ what is the eventual shape? [Hint: the answer is simple and interesting.]  
+5. For any given v0 there is a best launch angle θ ∗ for maximizing the range. As v0 → ∞ to what angle does θ ∗ tend? Justify your answer as best you can with careful numerics, analytical work, or both.  
+
+::::: {#fig-p9prob}
+![`../../media/problem09/problem09.png`](../../media/problem09/problem09.png)
+
+Problem Diagram
+:::::
+
+:::
+
+## Find position vs time analytically.
+
+::: {.callout collapse=true}
+# In file [`./Ballistics/src/Ballistics.jl`](./Ballistics/src/Ballistics.jl):
 
 ```julia
 function analytical_sol(t)
@@ -32,8 +41,12 @@ function analytical_sol(t)
     return u
 end
 ```
+:::
 
-This turned out to be wrong, it was an integral mistake (integration mistake). The corrected version in the same file:
+This turned out to be wrong, it was an integral mistake (integration mistake).
+
+::: {.callout}
+# The corrected version in the same file:
 
 ```julia
 function analytical_sol(t)
@@ -53,14 +66,16 @@ function analytical_sol(t)
     return u
 end
 ```
+:::
 
 ::: {.column-margin}
 TODO: Could I have created this analytical solution symbolically?
 :::
 
-# Find a numerical solution using given parameters
+## Find a numerical solution using given parameters
 
-The corresponding code for this in file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
+::: {.callout collapse=false}
+# In file [`./Ballistics/src/Ballistics.jl`](./Ballistics/src/Ballistics.jl):
 
 ```julia
 using DifferentialEquations
@@ -84,16 +99,22 @@ sol_numeric = solve(prob)
 #...
 Visualization.plot_trajectory(sol_numeric.u)
 ```
+:::
 
 This numerical solution gives the following trajectory:
 
-![../../media/problem09/numerical_trajectory.png](../../media/problem09/numerical_trajectory.png)
+::: {#fig-p9traj}
+![`../../media/problem09/numerical_trajectory.png`](../../media/problem09/numerical_trajectory.png)
 
-# Compare the numeric and analytics solutions? Plot time vs error. Plot step size and tolerances vs error.
+System Evolution, Trajectory
+:::
+
+## Compare the numeric and analytics solutions? Plot time vs error. Plot step size and tolerances vs error.
 
 For various initial conditions, the numeric and analytical solutions on the same graph, I was shifting the analytic in x direction by 0.1 unit to be able view both, otherwise they were overlapping with the default tolerances, but then I ended up using a non-dynamic step size explicit solver:
 
-In file [./Ballistics/src/Benchmarks.jl](./Ballistics/src/Benchmarks.jl):
+::: {.callout collapse=true}
+# In file [`./Ballistics/src/Benchmarks.jl`](./Ballistics/src/Benchmarks.jl):
 
 ```julia
 module Benchmarks
@@ -155,22 +176,22 @@ end
 
 end # module Benchmarks
 ```
- 
-![../../media/problem09/numeric_and_analytical_trajectories.png](../../media/problem09/numeric_and_analytical_trajectories.png)
+:::
 
-Now, I will plot the steps sizes vs error (euclidean norm of state vector at tend):
+::: {#fig-p9comptraj layout-ncol=2}
+![Compare Analytic and Numeric](../../media/problem09/numeric_and_analytical_trajectories.png)
 
-![../../media/problem09/steps_vs_error.png](../../media/problem09/steps_vs_error.png)
+![Time vs Compiled Error, different `abstol` `reltol`](../../media/problem09/time_vs_running_error.png)
 
-For a better method, like RK4, on the same graph:
+![Steps Sizes vs Error](../../media/problem09/steps_vs_error.png)
 
-![../../media/problem09/steps_vs_error_two_methods_compare.png](../../media/problem09/steps_vs_error_two_methods_compare.png)
+![Compare `Midpoint` and `RK4`](../../media/problem09/steps_vs_error_two_methods_compare.png)
 
-Now, for time vs error compilation:
+Comparing, Numeric and Analytic Solutions
+:::
 
-![../../media/problem09/time_vs_running_error.png](../../media/problem09/time_vs_running_error.png)
-
-Now, I will change the relative tolerance and absolute tolerance. In file [./Ballistics/src/Benchmarks.jl](./Ballistics/src/Benchmarks.jl):
+::: {.callout collapse=true}
+In file [`./Ballistics/src/Benchmarks.jl`](./Ballistics/src/Benchmarks.jl):
 
 ```julia
 function tolerances_vs_error(prob, analytical_solve)
@@ -201,24 +222,27 @@ function tolerances_vs_error(prob, analytical_solve)
     xs,ys,zs
 end
 ```
+:::
 
-Just by mistake I ran this for large (>1.0) tolerances. Below is the plot:
+::: {#fig-p9tolerances layout-ncol=1}
 
-![../../media/problem09/large_tolerances.png](../../media/problem09/large_tolerances.png)
+::::: {layout-ncol=2}
+![(did accidentally) Large (>1.0) tolerances](../../media/problem09/large_tolerances.png)
 
-Similarly for tiny (<<1.0) tolerances the plot:
+![Tiny (<<1.0) tolerances](../../media/problem09/small_tolerances.png)
+:::::
 
-![../../media/problem09/small_tolerances.png](../../media/problem09/small_tolerances.png)
+![Both on same plot](../../media/problem09/tolerances_vs_error_combined.png)
 
-Both scales on the same graph:
-
-![../../media/problem09/tolerances_vs_error_combined.png](../../media/problem09/tolerances_vs_error_combined.png)
+Tolerances vs Compiled Eror
+:::
 
 Simply put, it seems reducing both `abstol` and `reltol` generally reduces error from the analytic solution _very quickly_. What is the meaning of both is not yet entirely clear.
 
-# Use larger and larger values of v0, plot all of their trajectory till ball hits ground. What happens to the eventual shape as v -> ∞ ?
+## Use larger and larger values of v0, plot all of their trajectory till ball hits ground. What happens to the eventual shape as v -> ∞ ?
 
-The code for this in file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
+::: {.callout}
+# In file [`./Ballistics/src/Ballistics.jl`](./Ballistics/src/Ballistics.jl):
 
 ```julia
 # ...
@@ -260,16 +284,22 @@ Visualization.plot_all_trajectories(sols)
 
 # ...
 ```
+:::
 
 The plot corresponding to this:
 
-![Increasing intial velocities](../../media/problem09/initial_velocity_change.png)
+::: {#fig-p9incinitvel}
+![`../../media/problem09/initial_velocity_change.png`](../../media/problem09/initial_velocity_change.png)
 
-# Plot speed verses best launch angle, numerically or analyticaly or both
+Increasing intial velocities
+:::
+
+## Plot speed verses best launch angle, numerically or analyticaly or both
 
 I expect 45 degrees to still be consistantly good for launch even with drag.
 
-Doing this numerically, in file [./Ballistics/src/Benchmarks.jl](./Ballistics/src/Ballistics.jl):
+::: {.callout collapsed=true}
+# In file [`./Ballistics/src/Benchmarks.jl`](./Ballistics/src/Ballistics.jl):
 
 ```julia
 # ...
@@ -303,16 +333,22 @@ Visualization.plot_best_angle_for_speeds(speeds, bestangles)
 
 # ...
 ```
+:::
 
 The weird choice for launchangles is for concentrating numeric choices for launchangles near $\pi \over 4$. This produces:
 
-![../../media/problem09/speed_vs_bestangle_c_1.png](../../media/problem09/speed_vs_bestangle_c_1.png)
+::: {#fig-p9bestangle layout-ncol=2}
+![`../../media/problem09/speed_vs_bestangle_c_1.png`](../../media/problem09/speed_vs_bestangle_c_1.png)
 
-![../../media/problem09/speed_vs_bestangle_c_10.png](../../media/problem09/speed_vs_bestangle_c_10.png)
+![`../../media/problem09/speed_vs_bestangle_c_10.png`](../../media/problem09/speed_vs_bestangle_c_10.png)
+
+Best Angles for initial speeds
+:::
 
 It seems that my intuition was way off. It seems the best angle quickly becomes closer to zero as the initial velocity increases.
 
-Let us plot the relation of drag with the best angle for a high velocity (say v = 1200), in file [./Ballistics/src/Ballistics.jl](./Ballistics/src/Ballistics.jl):
+::: {.callout}
+# In file [`./Ballistics/src/Ballistics.jl`](./Ballistics/src/Ballistics.jl):
 
 ```julia
 speed0 = 1200.0
@@ -324,11 +360,16 @@ for c in drags
 end
 Visualization.plot_best_angle_vs_drag(drags, bestangles)
 ```
+:::
 
 ::: {.column-margin}
 TODO: There isn't much change in the eventual best angle for large velocities as drag changes. It does not seem right, but the best angle in such case seems to be some constant close to zero. I will explore this more later. The plot generated by above code is:
 :::
 
-![../../media/problem09/best_angle_vs_drag.png](../../media/problem09/best_angle_vs_drag.png)
+::: {#fig-p9bestanglevsdrag}
+![`../../media/problem09/best_angle_vs_drag.png`](../../media/problem09/best_angle_vs_drag.png)
+
+Drag vs best angle (v = 1200)
+:::
 
 This concludes my attempt of problem09.

@@ -4,32 +4,41 @@ author: "Vishal Paudel"
 date: "2025/04/12"
 ---
 
-> 17\. Montgomery’s eight. (From Ruina/Pratap). Three equal masses, say $m = 1$, are attracted by an inverse-square gravity law with $G = 1$. That is, each mass is attracted to the other by $F = G m_1 m_2 / r^2$ where $r$ is the distance between them. Use these unusual and special initial positions:
->
-> $$
-> \begin{align*}
-> (x1, y1) &= (−0.97000436, 0.24308753) \\
-> (x2, y2) &= (−x1, −y1) \\
-> (x3, y3) &= (0, 0)
-> \end{align*}
-> $$
->
-> and initial velocities
->
-> $$
-> \begin{align*}
-> (vx3, vy3) &= (0.93240737, 0.86473146)
-> (vx1, vy1) &= −(vx3, vy3)/2
-> (vx2, vy2) &= −(vx3, vy3)/2.
-> \end{align*}
->
-> For each of the problems below show accurate computer plots and explain any curiosities.
->
-> (a) Use computer integration to find and plot the motions of the particles. Plot each with a different color. Run the program for 2.1 time units.
-> (b) Same as above, but run for 10 time units.
-> (c) Same as above, but change the initial conditions slightly.
-> (d) Same as above, but change the initial conditions more and run for a much longer time.
->
-> ![](../../media/problem17/problem17-fbd.png)
->
-> [Aside: This was discovered by both Richard Montgomery (Santa Cruz Math department) and also by ex-Cornell Physics PhD student Chris Moore (now at Santa FeInstitute), independently. And, I know both of them, independently.]
+::: {.callout collapse=true}
+# 17\. **Montgomery’s eight.**
+
+(From Ruina/Pratap). Three equal masses, say $m = 1$, are attracted by an inverse-square gravity law with $G = 1$. That is, each mass is attracted to the other by $F = G m_1 m_2 / r^2$ where $r$ is the distance between them. Use these unusual and special initial positions:
+
+$$
+\begin{align*}
+(x1, y1) &= (−0.97000436, 0.24308753) \\
+(x2, y2) &= (−x1, −y1) \\
+(x3, y3) &= (0, 0)
+\end{align*}
+$$
+
+and initial velocities
+
+$$
+\begin{align*}
+(vx3, vy3) &= (0.93240737, 0.86473146) \\
+(vx1, vy1) &= −(vx3, vy3)/2 \\
+(vx2, vy2) &= −(vx3, vy3)/2. \\
+\end{align*}
+$$
+
+For each of the problems below show accurate computer plots and explain any curiosities.
+
+(a) Use computer integration to find and plot the motions of the particles. Plot each with a different color. Run the program for 2.1 time units.
+(b) Same as above, but run for 10 time units.
+(c) Same as above, but change the initial conditions slightly.
+(d) Same as above, but change the initial conditions more and run for a much longer time.
+
+::::: {#fig-p17prob}
+![](../../media/problem17/problem17-fbd.png)
+
+Problem Diagram
+:::::
+
+> \[Aside: This was discovered by both Richard Montgomery (Santa Cruz Math department) and also by ex-Cornell Physics PhD student Chris Moore (now at Santa FeInstitute), independently. And, I know both of them, independently.\]
+:::

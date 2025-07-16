@@ -4,20 +4,29 @@ author: "Vishal Paudel"
 date: "2025/04/12"
 ---
 
-> 18\. **Konig's Theorem.** The total kinetic energy of a system of particles is
->
-> $$E_K = \frac{1}{2} \sum m_i v_i^2$$
->
-> (a) Derive an expression of this form
->
-> $$E_K = \frac{1}{2} m_{tot} v_G^2 + \texttt{..you fill in the rest}$$
->
-> (b) Is it always true that
->
-> $$(\sum \vec{F}^{ext})\cdot\vec{v}_{G} = \frac{d}{dt} (\frac{1}{2} m_{tot} v_G^2) \texttt{?}$$
->
-> Defend your answer with unassailable clear reasoning (that is, a proof or a counter example)
->
-> (c) Is it always true that the power of internal forces is equal to the rate of change of the quantity you filled in part (a) above (just the second half of the full expression)? Provide a proof or a counter-example. (A good solution is expected from those in 5730).
->
-> ![](../../media/problem18/problem18-fbd.png)
+::: {.callout collapse=true}
+# 18\. **Konig's Theorem.**
+
+The total kinetic energy of a system of particles is
+
+$$E_K = \frac{1}{2} \sum m_i v_i^2$$
+
+(a) Derive an expression of this form
+
+$$E_K = \frac{1}{2} m_{tot} v_G^2 + \texttt{..you fill in the rest}$$
+
+(b) Is it always true that
+
+$$(\sum \vec{F}^{ext})\cdot\vec{v}_{G} = \frac{d}{dt} (\frac{1}{2} m_{tot} v_G^2) \texttt{?}$$
+
+Defend your answer with unassailable clear reasoning (that is, a proof or a counter example)
+
+(c) Is it always true that the power of internal forces is equal to the rate of change of the quantity you filled in part (a) above (just the second half of the full expression)? Provide a proof or a counter-example. (A good solution is expected from those in 5730).
+
+::::: {#fig-p18prob}
+![](../../media/problem18/problem18-fbd.png)
+
+Problem Diagram
+:::::
+
+:::

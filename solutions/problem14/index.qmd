@@ -4,15 +4,44 @@ author: "Vishal Paudel"
 date: "2025/04/12"
 ---
 
-> What means “rate of change of angular momentum”? Consider a moving particle P. Consider also a moving point C (moving relative to a Newtonian frame $\mathcal{F}$ that has an origin 0). For which of these definitions of $\vec{H}_{/C}$ Is the following equation of motion true (that is, consistent with $\vec{F} = m \cdot \vec{a}$)?
-> $$\vec{M}_C = \dot{\vec{H}}_{/C}$$
-> 
-> In each case say whether the definition works i) in general, or ii) for some special cases (that you name) concerning the motions of P and C.
->
-> (a) $\vec{H}_{/C} = \vec{r}_{P/C'} \times \vec{v}_{P/0} m$, where C' is a point fixed in $\mathcal{F}$ that instantaneuosly coincides with C.
-> (b) $\vec{H}_{/C} = \vec{r}_{P/C} \times \vec{v}_{P/0} m$.
-> (c) $\vec{H}_{/C} = \vec{r}_{P/C} \times \vec{v}_{P/C} m$.
->
-> That is, for each possible definition of $\vec{H}_{/C}$ you need to calculate $\dot{\vec{H}}_{C}$ by differentiation and see if and when you get $\dot{\vec{H}}_{/C} = \vec{r}_{P/C} \times m \vec{a}_{P/\mathcal{F}}$
->
-> ![](../../media/problem14/problem14-fbd.png)
+::: {.callout collapse=true}
+# 14\. **What means “rate of change of angular momentum”?**
+
+Consider a moving particle P. Consider also a moving point C (moving relative to a Newtonian frame $\mathcal{F}$ that has an origin 0). For which of these definitions of $\vec{H}_{/C}$ Is the following equation of motion true (that is, consistent with $\vec{F} = m \cdot \vec{a}$)?
+$$\vec{M}_C = \dot{\vec{H}}_{/C}$$
+
+In each case say whether the definition works i) in general, or ii) for some special cases (that you name) concerning the motions of P and C.
+
+1. $\vec{H}_{/C} = \vec{r}_{P/C'} \times \vec{v}_{P/0} m$, where C' is a point fixed in $\mathcal{F}$ that instantaneuosly coincides with C.
+1. $\vec{H}_{/C} = \vec{r}_{P/C} \times \vec{v}_{P/0} m$.
+1. $\vec{H}_{/C} = \vec{r}_{P/C} \times \vec{v}_{P/C} m$.
+
+That is, for each possible definition of $\vec{H}_{/C}$ you need to calculate $\dot{\vec{H}}_{C}$ by differentiation and see if and when you get $\dot{\vec{H}}_{/C} = \vec{r}_{P/C} \times m \vec{a}_{P/\mathcal{F}}$
+
+::::: {#fig-p14prob}
+![](../../media/problem14/problem14-fbd.png)
+
+Problem Diagram
+:::::
+
+:::
+
+## $\vec{H}_{/C} = \vec{r}_{P/C'} \times \vec{v}_{P/0} m$, where C' is a point fixed in $\mathcal{F}$ that instantaneuosly coincides with C.
+
+No conditions, this definition is consistent with  $\vec{F} = m \cdot \vec{a}$.
+
+## $\vec{H}_{/C} = \vec{r}_{P/C} \times \vec{v}_{P/0} m$.
+
+This condition is consistent with  $\vec{F} = m \cdot \vec{a}$, only if $\vec{v}_C = \vec{0}$.
+
+## $\vec{H}_{/C} = \vec{r}_{P/C} \times \vec{v}_{P/C} m$.
+
+This condition is consistent with  $\vec{F} = m \cdot \vec{a}$, only if $\vec{a}_C = \vec{0}$.
+
+::: {.callout collapse=true}
+# Show work
+
+![](../../media/problem14/problem14-1-rw.jpeg)
+
+![](../../media/problem14/problem14-2-rw.jpeg)
+:::

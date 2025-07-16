@@ -4,18 +4,27 @@ author: "Vishal Paudel"
 date: "2025/04/02"
 ---
 
-> 11\. **Central force.** These two problems are both about central forces. In both cases the only force is central (directed on the particle towards the origin) and only depends on radius: $\vec{\mathbf{F}} = −F(r)\mathbf{\hat{e}_r}$. The problems are independent, one does not follow from the other.
-> 
-> (a) Find a central force law $F(r)$ so that, comparing circular orbits of varying radii, the speed v is independent of radius.
-> (b) By numerical experiments, and trial and error, try to find a periodic motion that is neither circular nor a straight line, for some central force besides $F = −kr$ or $F = \frac{−GmM}{r2}$ . a) not with a linear zero-rest length spring; b) not with inverse-square gravity; c) not circular motion; and d) not straight-line motion.
->     i. In your failed searches, before you find a periodic motion, do the motions always have regular patterns or are they sometimes chaotic looking (include some pretty pictures)?
->     ii. Puzzle: If you use a power law, what is the minimum number loops in one complete periodic orbit (a loop is, say, a relative maximum in the radius)? How does this depend on the exponent in the power law? You probably cannot make progress with this analytically, but you can figure it out with numerical experiments
-> 
-> \[Matlab hint: To do this properly you probably need to guess at a radial force law (most anything will work) and do numerical root finding (e.g., `FSOLVE`) to find initial conditions and the period of the orbit. Once you have your system you can define a function whose input is the initial conditions and the time of integration and whose output is the difference between the initial state and the final state. You can make this system ‘square’ by assuming that the particle is on the x axis in the initial state. You want to find that input which makes the output the zero vector. Pick a central force and search over initial conditions and durations. Do not use `FSOLVE` to search over force laws; do your orbit finding using a given force law\]
->
-> ![../../media/problem11/problem11.png](../../media/problem11/problem11.png)
+::: {.callout collapse=true}
+# 11\. **Central force.**
 
-# (a) Find a central force law $F(r)$ so that, comparing circular orbits of varying radii, the speed v is independent of radius.
+These two problems are both about central forces. In both cases the only force is central (directed on the particle towards the origin) and only depends on radius: $\vec{\mathbf{F}} = −F(r)\mathbf{\hat{e}_r}$. The problems are independent, one does not follow from the other.
+
+1. Find a central force law $F(r)$ so that, comparing circular orbits of varying radii, the speed v is independent of radius.
+2. By numerical experiments, and trial and error, try to find a periodic motion that is neither circular nor a straight line, for some central force besides $F = −kr$ or $F = \frac{−GmM}{r2}$ . a) not with a linear zero-rest length spring; b) not with inverse-square gravity; c) not circular motion; and d) not straight-line motion.
+    i. In your failed searches, before you find a periodic motion, do the motions always have regular patterns or are they sometimes chaotic looking (include some pretty pictures)?
+    ii. Puzzle: If you use a power law, what is the minimum number loops in one complete periodic orbit (a loop is, say, a relative maximum in the radius)? How does this depend on the exponent in the power law? You probably cannot make progress with this analytically, but you can figure it out with numerical experiments
+
+\[Matlab hint: To do this properly you probably need to guess at a radial force law (most anything will work) and do numerical root finding (e.g., `FSOLVE`) to find initial conditions and the period of the orbit. Once you have your system you can define a function whose input is the initial conditions and the time of integration and whose output is the difference between the initial state and the final state. You can make this system ‘square’ by assuming that the particle is on the x axis in the initial state. You want to find that input which makes the output the zero vector. Pick a central force and search over initial conditions and durations. Do not use `FSOLVE` to search over force laws; do your orbit finding using a given force law\]
+
+::::: {#fig-p11prob}
+![`../../media/problem11/problem11.png`](../../media/problem11/problem11.png)
+
+External Forces on System
+:::::
+
+:::
+
+## Find a central force law $F(r)$ so that, comparing circular orbits of varying radii, the speed v is independent of radius.
 
 Consider the relationship between centripetal force and velocity for uniform circular motion, since velocity is constant we can write:
 
@@ -23,7 +32,10 @@ $$F(r) = \frac{mv^2}{r}$$
 
 $$F(r) = k\frac{m}{r}$$
 
-Quickly drawing the trajectory for tangential initial conditions, in file [./CentralForce/src/CentralForce.jl](./CentralForce/src/CentralForce.jl):
+Quickly drawing the trajectory for tangential initial conditions,
+
+::: {.callout}
+# In file [`./CentralForce/src/CentralForce.jl`](./CentralForce/src/CentralForce.jl):
 
 ```julia
 u0 = [1.0;0.0;0.0;1.0]
@@ -35,24 +47,30 @@ ode = Physics.speedindependentofradius!
 ode_prob = DifferentialEquations.ODEProblem(ode, u0, tspan, p)
 sol = DifferentialEquations.solve(ode_prob)
 ```
+:::
 
 This produces:
 
-![../../media/problem11/problem11_trajectory_central_force.png](../../media/problem11/problem11_trajectory_central_force.png)
+::: {#fig-p11traj}
+![`../../media/problem11/problem11_trajectory_central_force.png`](../../media/problem11/problem11_trajectory_central_force.png)
 
-the trajectory for non-tangential inital velocity:
+The trajectory for non-tangential inital velocity
+:::
 
 ::: {.column-margin}
 TODO: add graph for velocity vs radius
 :::
 
-# (b) By numerical experiments, and trial and error, try to find a periodic motion that is neither circular nor a straight line, for some central force besides $F = −kr$ or $F = \frac{−GmM}{r2}$ . a) not with a linear zero-rest length spring; b) not with inverse-square gravity; c) not circular motion; and d) not straight-line motion.
+## By numerical experiments, and trial and error, try to find a periodic motion that is neither circular nor a straight line, for some central force besides $F = −kr$ or $F = \frac{−GmM}{r2}$ . a) not with a linear zero-rest length spring; b) not with inverse-square gravity; c) not circular motion; and d) not straight-line motion.
 
 First of all, I would like to note here that this was the most interesting and fun and investing problem so far in this problem set. I have spent almost 18 hours spread over 6 days on this problem.
 
 We begin by formulating our problem:
 
 For example, an interesting central force field is this:
+
+::: {.callout collapse=true}
+# In file [`./CentralForce/src/Physics.jl`](./CentralForce/src/Physics.jl)
 
 ```julia
 function dipolepowerlaw(r⃗, p)
@@ -84,16 +102,24 @@ function centralforce!(du, u, p, t)
     du[3:4] = a⃗
 end
 ```
+:::
 
-The graph for this magnitude of this central force field looks like this:
+The graph for this:
 
-![Dipole power law](../../media/problem11/problem11-dipolepowerlaw-graph.png)
+::: {#fig-p11centralforce}
+![../../media/problem11/problem11-dipolepowerlaw-graph.png](../../media/problem11/problem11-dipolepowerlaw-graph.png)
+
+Dipole Power Law Central Force Field
+:::
 
 For any such `function centralforce!(du, u::State, p::Parameters, tend:Time)::State`, we want to find a $\vec{u}_0$ such that, for $\vec{u}_t$ = `DifferentialEquations.solve(odeprob)[end]`
 
 $$\vec{u}_t - \vec{u}_0 = \vec{0}$$
 
-Which is equivalent to finding a zero to the following function `f`, in file [./CentralForce/src/RootFinding.jl](./CentralForce/src/RootFinding.jl):
+Which is equivalent to finding a zero to the following function `f`
+
+::: {.callout collapse=true}
+# In file [./CentralForce/src/RootFinding.jl](./CentralForce/src/RootFinding.jl):
 
 ```julia
 f(z⃗₀, p) = begin
@@ -114,6 +140,7 @@ f(z⃗₀, p) = begin
     return [Δu⃗; phasecondition]
 end
 ```
+:::
 
 One challenge I overcame after much thinking is regarding the `phasecondition`, the number of variables to solve for should equal the number of equations, earlier the input dimension was five: $(x, y, vx, vy, tend)$ while the output dimension was four `(Δx, Δy, Δvx, Δvy)`.
 
@@ -127,7 +154,9 @@ output (4): (Δx, Δy, Δvx, Δvy )
 
 Somehow I feel this is not ideal. The system of nonlinear equations feels under defined. So, to correct this I added the constraint of solution roots should start on the y axis, i.e x = 0
 
-In my system this is equivalent to:
+
+::: {.callout}
+# In my system this is equivalent to:
 
 ```julia
 f(z⃗₀, p) = begin
@@ -152,8 +181,10 @@ f(z⃗₀, p) = begin
     return [Δu⃗; phasecondition]
 end
 ```
+:::
 
-But now the root finder is giving me this warning and gets stuck:
+::: {.callout}
+# But now the root finder is giving me this warning and gets stuck:
 
 ```
  Warning: Interrupted. Larger maxiters is needed. If you are using an integrator for non-stiff ODEs or an automatic switching algorithm (the default), you may want to consider using a method for stiff equations. See the solver pages for more details (e.g. https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/#Stiff-Problems).
@@ -170,6 +201,7 @@ But now the root finder is giving me this warning and gets stuck:
 └ @ SciMLBase ~/.julia/packages/SciMLBase/cwnDi/src/integrator_interface.jl:623
 Is this because the phasecondition is linearly dependent to the state vector, I don't feel that is the case. What is going on?
 ```
+:::
 
 The answer I got was by `@romanveltz`: "BifurcationKit does all that already".
 
@@ -181,7 +213,10 @@ We can formulate the solution to this either in an optimization way, or a root f
 
 One way to feed the initial conditions to the root solver is to keep doubling the norm of the initial condition vector, this is to avoid trivial roots: $tend = 0$ or $v_0 = 0$
 
-In julia, I use the `NonlinearSolver`. In file [./CentralForce/src/RootFinding.jl](./CentralForce/src/RootFinding.jl):
+In julia, I use the `NonlinearSolver`.
+
+::: {.callout collapse=true}
+In file [`./CentralForce/src/RootFinding.jl`](./CentralForce/src/RootFinding.jl):
 
 ```julia
 function strategy_exponentiate()
@@ -242,8 +277,12 @@ function strategy_exponentiate()
     return periodic_sol
 end
 ```
+:::
 
-Another strategy is to sample and pass every point in a mesh as a initial state to the solver, in the same file
+Another strategy is to sample and pass every point in a mesh as a initial state to the solver
+
+::: {.callout collapse=true}
+In the same file
 
 ```julia
 function strategy_meshcheck()
@@ -287,12 +326,15 @@ function strategy_meshcheck()
     println("Successfuly converged solutions: ", roots)
 end
 ```
+:::
 
 The root finder was not converging for me for these.
 
 But still with a bit of intuition I was able to find a non trivial Central Force Field with a non trivial periodic orbit, [./CentralForce/src/Physics.jl](./CentralForce/src/Physics.jl):
 
-For the following force field:
+
+::: {.callout}
+# For the following force field:
 
 ```julia
 #...
@@ -306,12 +348,18 @@ function hillinvalley(r⃗, p)
 end
 #...
 ```
+:::
 
-The graph of the magnitude of this force field:
+::: {#fig-p11hillinvalleygraph}
+![`../../media/problem11/problem11-hillinvalley-graph.png`](../../media/problem11/problem11-hillinvalley-graph.png)
 
-![problem11-hillinvalley-graph.png](../../media/problem11/problem11-hillinvalley-graph.png)
+Graph of Hill-in-Valley function
+:::
 
-With the follwoing intiial conditions, in file [./CentralForce/src/CentralForce.jl](./CentralForce/src/CentralForce.jl):
+With the following initial conditions
+
+::: {.callout}
+# In file [`./CentralForce/src/CentralForce.jl`](./CentralForce/src/CentralForce.jl):
 
 ```julia
 #...
@@ -331,9 +379,15 @@ v⃗ = [-v, v]
 u⃗₀ = [r⃗; v⃗]
 plot_solution(u⃗₀, tend)
 ```
+:::
 
-We get the **surely periodic** orbit, 'surely periodic' meaning I dont have an analytical proof yet but have tested it for `tend=5000`:
 
-![problem11-hillinvalley-trajectory.png](../../media/problem11/problem11-hillinvalley-trajectory.png)
+::: {#fig-p11hillinvalleytraj}
+![`../../media/problem11/problem11-hillinvalley-trajectory.png`](../../media/problem11/problem11-hillinvalley-trajectory.png)
+
+We get a **surely periodic** orbit
+:::
+
+Here, 'surely periodic' means I dont have an analytical proof yet but have tested it for `tend=5000`:
 
 The inconsistent use of `code blocks` and $math blocks$ was an intentional fast.

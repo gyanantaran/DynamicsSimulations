@@ -4,27 +4,44 @@ author: "Vishal Paudel"
 date: "2025/01/24"
 ---
 
-> 1\. **Set up (define system, draw FBD, write ODEs) a particle problem.** Just one particle. 2D or 3D, your choice. Use a force, or forces that you like (gravity, spring, air friction). Any example of interest. Find a numerical solution. Graph it. Animate it. Try to make an interesting observation.
+::: {.callout collapse=true}
+# 1\. **Set up (define system, draw FBD, write ODEs) a particle problem.**
 
-# System Description and Free Body Diagram
+Just one particle. 2D or 3D, your choice. Use a force, or forces that you like (gravity, spring, air friction). Any example of interest. Find a numerical solution. Graph it. Animate it. Try to make an interesting observation.
+:::
+
+## System Description and Free Body Diagram
 
 I think I have chosen a just hard enough interesting problem. A spring pendulum consists of a mass $m$ attached to a spring of natural length $l_0$ and spring constant $k$. 
 
+::: {#fig-fbd layout-ncol=2}
+
+::::: {}
 The system experiences:
+
 - Spring force $\vec{F_s} = k(\|{\vec{r}\|}-l_0)(-\hat{r})$
 - Gravitational force $\vec{F_g} = mg(-\hat{j})$
 - Damping force $\vec{F_d} = cv(-\hat{v})$
+:::::
 
-![Freebody-diagram](../../media/problem01/problem01-fbd.jpeg){width=50%}
+![`../../media/problem01/problem01-fbd.jpeg`](../../media/problem01/problem01-fbd.jpeg){width=75%}
 
-# Equations of Motion
+Free Object Diagram
+:::
+
+## Equations of Motion
 
 In Cartesian coordinates, the equations of motion are:
 
-$$\dot{\vec{r}} = \vec{v}$$
-$$\dot{\vec{v}} = -k(\|\vec{r}\|-l_0) \hat{r} - c \vec{v} - mg\hat{j}$$
+$$
+\begin{align*}
+\dot{\vec{r}} &= \vec{v} \\
+\dot{\vec{v}} &= -k(\|\vec{r}\|-l_0) \hat{r} - c \vec{v} - mg\hat{j} \\
+\end{align*}
+$$
 
-The corresponding code for the ODE in file [./SpringPendulum/src/Physics.jl](./SpringPendulum/src/Physics.jl):
+::: {.callout collapse=false}
+# The corresponding code for the ODE in file [`./SpringPendulum/src/Physics.jl`](./SpringPendulum/src/Physics.jl):
 
 ```julia
 module Physics
@@ -54,10 +71,12 @@ end
 
 end
 ```
+:::
 
-# Numerical Solution
+## Numerical Solution
 
-In file [./SpringPendulum/src/SpringPendulum.jl](./SpringPendulum/src/SpringPendulum.jl)
+::: {.callout collapse=true}
+# In file [`./SpringPendulum/src/SpringPendulum.jl`](./SpringPendulum/src/SpringPendulum.jl)
 
 ```julia
 module SpringPendulum
@@ -86,14 +105,20 @@ sol = solve(prob, saveat=Δt, reltol=1e-6, abstol=1e-6)
 
 end # module SpringPendulum
 ```
+:::
 
-# Phase Space Trajectory
+## Phase Space Trajectory
 
-Plot showing the system evolution in phase space. In file [./SpringPendulum/src/Visualization.jl](./SpringPendulum/src/Visualization.jl):
+Plot showing the system evolution in phase space. In file [`./SpringPendulum/src/Visualization.jl`](./SpringPendulum/src/Visualization.jl):
 
-![Left: Trajectory plot. Right: Theta vs Time](../../media/problem01/trajectory_plot.png)
+::: {#fig-trajectoryplot layout-ncol=1}
+![`../../media/problem01/trajectory_plot.png`](../../media/problem01/trajectory_plot.png)
 
-Code corresponding to this in file [SpringPendulum/src/Visualization.jl](SpringPendulum/src/Visualization.jl):
+Left: System Evolution, Trajectory plot. Right: Theta vs Time
+:::
+
+::: {.callout collapse=true}
+# Code corresponding to this in file [`SpringPendulum/src/Visualization.jl`](SpringPendulum/src/Visualization.jl):
 
 ```julia
 function plot_trajectory(sol; title="Spring Pendulum Trajectory")
@@ -128,17 +153,23 @@ function plot_trajectory(sol; title="Spring Pendulum Trajectory")
     return trajectory_plot
 end
 ```
+:::
 
-# Animation
+## Animation
 The following shows the animation for the solution system. The code corresponding to this animation:
 
 ::: {.column-margin}
 TODO: add springs to visualise
 :::
 
-![Spring Pendulum Motion](../../media/problem01/sol_animation.gif)
+::: {#fig-animation layout-ncol=1}
+![`../../media/problem01/sol_animation.gif`](../../media/problem01/sol_animation.gif)
 
-The code corresponding to this animation is in file [./SpringPendulum/src/Visualization.jl](./SpringPendulum/src/Visualization.jl):
+Spring Pendulum Motion Animation
+:::
+
+::: {.callout collapse=true}
+# The code corresponding to this animation is in file [`./SpringPendulum/src/Visualization.jl`](./SpringPendulum/src/Visualization.jl):
 
 ```julia
 function makie_animation(sol; filename="sol_animation.gif", title="Animation")
@@ -177,13 +208,14 @@ function makie_animation(sol; filename="sol_animation.gif", title="Animation")
     return animation
 end
 ```
+:::
 
-# Observations
+## Observations
 
 1. Energy exchange between potential and kinetic forms
 2. Damped oscillations due to viscous friction
 3. For some parameters there is weird behaviour at very small scales. This is probably an artifact of the solver and floating point truncations. I was unable to reproduce this, but I had shown this to Professor Andy and Ganesh Bhaiya.
 4. Increasing `c` by a little has a drastic effect
 5. The problem was fun to simulate
-6. Julia was fun to code in: Libraries were ergonomic to use, DifferentialEquations.jl, and Makie.jl
+6. Julia was fun to code in: Libraries were ergonomic to use, `DifferentialEquations.jl`, and `Makie.jl`
 7. I noticed only much later that all of the trajectories for when resting length is zero are elipses.

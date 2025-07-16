@@ -4,10 +4,16 @@ author: "Vishal Paudel"
 date: "2025/02/24"
 ---
 
-> 7\. **Simple animation of a shape.** Draw a picture of some object (a face, a house, whatever), and make it move around on the screen in a smooth and interesting way. No distortions. Just motions and rotations
+::: {.callout collapse=true}
+# 7\. **Simple animation of a shape.**
 
+Draw a picture of some object (a face, a house, whatever), and make it move around on the screen in a smooth and interesting way. No distortions. Just motions and rotations
+:::
 
-In file [./simple_animation.jl](./simple_animation.jl):
+## House in Space Animation
+
+::: {.callout}
+In file [`./simple_animation.jl`](./simple_animation.jl):
 
 ```julia
 using GLMakie
@@ -53,7 +59,14 @@ record(fig, "rotating_house.gif", 1:frames; framerate = 30) do frame
     house_lines[1] = transformed_points
 end
 ```
+:::
 
 Produces this animation:
 
-![Floating house in space](../../media/problem07/rotating_house.gif)
+::: {#fig-p7animation}
+![`../../media/problem07/rotating_house.gif`](../../media/problem07/rotating_house.gif)
+
+Floating house in space
+:::
+
+Note, this problem being the 7th problem hints that the ordering of the problem set is not necessarily ascending in sophistication.

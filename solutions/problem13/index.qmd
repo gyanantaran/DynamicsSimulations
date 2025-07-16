@@ -4,18 +4,25 @@ author: "Vishal Paudel"
 date: "2025/04/12"
 ---
 
-> 13\. **Statics vs Dynamics.** 2D. Equilibrium and dynamics of a point mass $m$ at $\vec{r}_{C}$. Gravity $g$ points down in the minus $\hat{j}$ direction. Points A and B are anchored at $\vec{r}_A$ and $\vec{r}_B$. Springs and parallel dashpots connect the mass to A and B. The spring constants are $k_A$ and $k_B$. Their rest lengths are $L_A$ and $L_B$. Parallel to the springs are dashpots $c_A$ and $c_B$. The mass also has a drag force proportional to speed through the air $c_d$.
-> 
-> The dynamic state of the system is described with $z = [x, y, \dot{x}, \dot{y}]'$ and the static state by $z = [x, y, 0, 0]'$.
-> 
-> (a) Basic Statics. Given parameters and an initial guess, find an equilibrium position of this system. If you have an example you like, post it and people can compare solutions.
-> (b) Basic Dynamics. Given parameters and an initial condition, find the motion.
-> (c) All equilibria. Given parameters, attempt to find all equilibria. How many are there? By varying parameters, what is the most and least number of equilibrium points there can be?
-> (d) Stability of equilibrium. Given an equilibrium point, find it’s stability 2 ways: (a) With a dynamic simulation near the equilibrium; and (b) looking at the eigenvalues of the matrix describing the linearized equations of motion. Compare.
->
-> Make appropriate plots, animations and comparisons.
+::: {.callout collapse=true}
+# 13\. **Statics vs Dynamics.**
 
-In file [./FindEquilibrium/src/FindEquilibrium.jl](./FindEquilibrium/src/FindEquilibrium.jl):
+2D. Equilibrium and dynamics of a point mass $m$ at $\vec{r}_{C}$. Gravity $g$ points down in the minus $\hat{j}$ direction. Points A and B are anchored at $\vec{r}_A$ and $\vec{r}_B$. Springs and parallel dashpots connect the mass to A and B. The spring constants are $k_A$ and $k_B$. Their rest lengths are $L_A$ and $L_B$. Parallel to the springs are dashpots $c_A$ and $c_B$. The mass also has a drag force proportional to speed through the air $c_d$.
+
+The dynamic state of the system is described with $z = [x, y, \dot{x}, \dot{y}]'$ and the static state by $z = [x, y, 0, 0]'$.
+
+1. Basic Statics. Given parameters and an initial guess, find an equilibrium position of this system. If you have an example you like, post it and people can compare solutions.
+1. Basic Dynamics. Given parameters and an initial condition, find the motion.
+1. All equilibria. Given parameters, attempt to find all equilibria. How many are there? By varying parameters, what is the most and least number of equilibrium points there can be?
+1. Stability of equilibrium. Given an equilibrium point, find it’s stability 2 ways: (a) With a dynamic simulation near the equilibrium; and (b) looking at the eigenvalues of the matrix describing the linearized equations of motion. Compare.
+
+Make appropriate plots, animations and comparisons.
+:::
+
+## Basic Statics. Given parameters and an initial guess, find an equilibrium position of this system. If you have an example you like, post it and people can compare solutions.
+
+::: {.callout collapse=true}
+# In file [`./FindEquilibrium/src/FindEquilibrium.jl`](./FindEquilibrium/src/FindEquilibrium.jl):
 
 ```julia
 module FindEquilibrium
@@ -123,21 +130,24 @@ Visualization.plot_points!(trajectory, spring1.r⃗₀, spring2.r⃗₀)
 
 end # module FindEquilibrium
 ```
+:::
 
-
-# (a) Basic Statics. Given parameters and an initial guess, find an equilibrium position of this system. If you have an example you like, post it and people can compare solutions.
-
-Finally, taking the average of the two clusters of end points gives us these equilibrium state.
+Taking the average of the two clusters of end points for a grid of starting points gives us these equilibrium state.
 
 `[[-0.8, -0.49],[-0.6, -1.8]]`
 
 Note, The axis aspect are not equal.
 
-![](../../media/problem13/end-final-param-N-n-50-5-eps-0.001-c_d-0.5.png)
+::: {#fig-p13eqlpoints}
+![../../media/problem13/end-final-param-N-n-50-5-eps-0.001-c_d-0.5.png](../../media/problem13/end-final-param-N-n-50-5-eps-0.001-c_d-0.5.png)
 
-# (b) Basic Dynamics. Given parameters and an initial condition, find the motion.
+Blue points are equilibriums, the other points are spring pivots
+:::
 
-In file [./FindEquilibrium/src/Physics.jl](./FindEquilibrium/src/Physics.jl):
+## Basic Dynamics. Given parameters and an initial condition, find the motion.
+
+::: {.callout collapse=true}
+# In file [`./FindEquilibrium/src/Physics.jl`](./FindEquilibrium/src/Physics.jl):
 
 ```julia
 module Physics
@@ -197,35 +207,45 @@ end
 
 end # module Physics
 ```
+:::
 
-An example trajectory for the taken parameters:
+::: {#fig-p13traj}
+![`../../media/problem13/trajectory.png`](../../media/problem13/trajectory.png)
 
-![](../../media/problem13/trajectory.png)
+An example trajectory for the taken parameters
+:::
 
+## All equilibria. Given parameters, attempt to find all equilibria. How many are there? By varying parameters, what is the most and least number of equilibrium points there can be?
 
-# (c) All equilibria. Given parameters, attempt to find all equilibria. How many are there? By varying parameters, what is the most and least number of equilibrium points there can be?
+What I did essentially was to take many (about 300) intial position vectors in a grid around the and containing the anchor points. I tried various methods, but essentially all of the methods revolved around playing the simulation and noting the end point.
 
-What I did essentially was to take many (about 300) intial position vectors in a grid around the and containing the anchor points. I tried various methods, but essentially all of the methods revolved around playing the simulation and noting the end point. Look at some of the plots below:
-
+::: {#fig-p13rubberart layout-ncol=1}
 ![](../../media/problem13/rubberart-01-param-N-n-9-9.png)
 
 ![](../../media/problem13/rubberart-02-param-N-n-13-9-eps-0.07-c_d-0.3.png)
 
 ![](../../media/problem13/rubberart-03-param-N-n-11-9-eps-0.01-c_d-0.5.png)
 
-Trying to use a negative air drag:
+I call these Rubber Art
+:::
 
+::: {#fig-p13negdrag}
 ![](../../media/problem13/rubberart-04-param-N-n-11-9-eps-0.01-c_d--0.5.png)
 
 ![](../../media/problem13/rubberart-04-param-N-n-11-9-eps-0.01-c_d--0.001.png)
 
-Finally, just looking at the start state and the end state:
+Trying to use a negative air drag
+:::
 
+::: {#fig-p13eqpointline}
 ![](../../media/problem13/startend-final-param-N-n-30-5-eps-0.001-c_d-0.9.png)
 
 ![](../../media/problem13/startend-final-param-N-n-20-4-eps-0.001-c_d-0.9.png)
 
-# (d) Stability of equilibrium. Given an equilibrium point, find it’s stability 2 ways: (a) With a dynamic simulation near the equilibrium; and (b) looking at the eigenvalues of the matrix describing the linearized equations of motion. Compare.
+Finally, just looking at the start state and the end state:
+:::
+
+## Stability of equilibrium. Given an equilibrium point, find it’s stability 2 ways: (a) With a dynamic simulation near the equilibrium; and (b) looking at the eigenvalues of the matrix describing the linearized equations of motion. Compare.
 
 I was only able to find stable equilibriums. I was not able to use "(b) looking at the eigenvalues of the matrix describing the linearized equations of motion."
 

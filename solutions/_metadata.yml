@@ -1,8 +1,16 @@
-sidebar: dynamics
+sidebar: false
+page-navigation: true
+title-block-banner: false
 
 format:
-  html: 
-    grid:
-      margin-width: 1000px
-
-page-navigation: true
+  html:
+    other-links:
+      - text: Repository
+        icon: github
+        href: https://github.com/gyanantaran/DynamicsSimulations/
+      - text: All Problems
+        icon: home
+        href: /content/DynamicsSimulations/
+    comments:
+      giscus:
+        repo: gyanantaran/DynamicsSimulations
