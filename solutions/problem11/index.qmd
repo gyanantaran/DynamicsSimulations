@@ -10,7 +10,7 @@ date: "2025/04/02"
 These two problems are both about central forces. In both cases the only force is central (directed on the particle towards the origin) and only depends on radius: $\vec{\mathbf{F}} = −F(r)\mathbf{\hat{e}_r}$. The problems are independent, one does not follow from the other.
 
 1. Find a central force law $F(r)$ so that, comparing circular orbits of varying radii, the speed v is independent of radius.
-2. By numerical experiments, and trial and error, try to find a periodic motion that is neither circular nor a straight line, for some central force besides $F = −kr$ or $F = \frac{−GmM}{r2}$ . a) not with a linear zero-rest length spring; b) not with inverse-square gravity; c) not circular motion; and d) not straight-line motion.
+1. By numerical experiments, and trial and error, try to find a periodic motion that is neither circular nor a straight line, for some central force besides $F = −kr$ or $F = \frac{−GmM}{r2}$ . a) not with a linear zero-rest length spring; b) not with inverse-square gravity; c) not circular motion; and d) not straight-line motion.
     i. In your failed searches, before you find a periodic motion, do the motions always have regular patterns or are they sometimes chaotic looking (include some pretty pictures)?
     ii. Puzzle: If you use a power law, what is the minimum number loops in one complete periodic orbit (a loop is, say, a relative maximum in the radius)? How does this depend on the exponent in the power law? You probably cannot make progress with this analytically, but you can figure it out with numerical experiments
 

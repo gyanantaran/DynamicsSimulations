@@ -10,10 +10,10 @@ date: "2025/02/26"
 A cannon ball m is launched at angle θ and speed v0. It is acted on by gravity g and a viscous drag with magnitude $\|c\vec{v}\|$.
 
 1. Find position vs time analytically.  
-2. Find a numerical solution using θ = π/4, $v_0 = 1$ m/s, g = 1 m/s 2 , m = 1 kg, c = 1 kg/ s.  
-3. Compare the numeric and analytic solutions. At t = 2 how big is the error? How does the error depend on specified tolerances or step sizes?  
-4. Use larger and larger values of v0 and for each trajectory choose a time interval so the canon at least gets back to the ground. Plot the trajectories (using equal scale for the x and y axis. Plot all curves on one plot. As v → ∞ what is the eventual shape? [Hint: the answer is simple and interesting.]  
-5. For any given v0 there is a best launch angle θ ∗ for maximizing the range. As v0 → ∞ to what angle does θ ∗ tend? Justify your answer as best you can with careful numerics, analytical work, or both.  
+1. Find a numerical solution using θ = π/4, $v_0 = 1$ m/s, g = 1 m/s 2 , m = 1 kg, c = 1 kg/ s.  
+1. Compare the numeric and analytic solutions. At t = 2 how big is the error? How does the error depend on specified tolerances or step sizes?  
+1. Use larger and larger values of v0 and for each trajectory choose a time interval so the canon at least gets back to the ground. Plot the trajectories (using equal scale for the x and y axis. Plot all curves on one plot. As v → ∞ what is the eventual shape? [Hint: the answer is simple and interesting.]  
+1. For any given v0 there is a best launch angle θ ∗ for maximizing the range. As v0 → ∞ to what angle does θ ∗ tend? Justify your answer as best you can with careful numerics, analytical work, or both.  
 
 ::::: {#fig-p9prob}
 ![`../../media/problem09/problem09.png`](../../media/problem09/problem09.png)

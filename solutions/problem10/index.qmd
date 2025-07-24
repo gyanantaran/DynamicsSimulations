@@ -10,8 +10,8 @@ date: "2025/03/25"
 Consider a point mass hanging from a zero-restlength linear spring (`0 = 0) in a constant gravitational field.
 
 1. Set up equations. Set up for numerical solution. Plot 2D projection of 3D trajectories.
-2. By playing around with initial conditions, find the most wild motion you can find (wild means most wiggles, or most complicated). Make one or more revealing plots. [Hint: Make sure the features you observe are properties of the system and not due to numerical errors. That is, check that the features do not change when the numerics is refined.]
-3. Using analytical methods justify your answer to part (b).
+1. By playing around with initial conditions, find the most wild motion you can find (wild means most wiggles, or most complicated). Make one or more revealing plots. [Hint: Make sure the features you observe are properties of the system and not due to numerical errors. That is, check that the features do not change when the numerics is refined.]
+1. Using analytical methods justify your answer to part (b).
 
 ![`../../media/problem10/problem10.png`](../../media/problem10/problem10.png)
 :::

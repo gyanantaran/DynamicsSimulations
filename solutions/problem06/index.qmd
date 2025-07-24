@@ -12,10 +12,10 @@ image: ../../media/problem06/lorenz_makie.gif
 One end of of a negligible-mass spring (k, L0) is pinned to the origin, the other to a mass (m). There is gravity (g). Initial Conditions (ICs): The initial position is $\vec{r}_0 = x_0\hat{i} + y_0\hat{j}$, and the initial velocity is $\vec{v}_0 = v_{x0}\hat{i} + v_{y0}\hat{j}$. Motion starts at $t = 0$ and ends at tend.  
 
 1. Find the Equations of Motion (EoM);  
-2. Assume all parameters and IC’s above are given.  
+1. Assume all parameters and IC’s above are given.  
     i. Plot the trajectory of the mass.  
     ii. Animate the trajectory of the mass.  
-3. How many ways can you think of checking the numerical solution, find as manyas you can, and do the check. The list is started here:
+1. How many ways can you think of checking the numerical solution, find as manyas you can, and do the check. The list is started here:
     i. k = 0, all else arbitrary: The motion is parabolic flight (including fallingstraight down as a special case) [Why? The system is then just ballisticsfrom freshman physics];
     ii. x0 = 0, vx0 = 0, all else arbitrary: The motion stays on the y axis [Why?There is no force in the x direction if the mass is on the y axis. Becausethe initial velocity has no x component, the mass never leaves the y axis;
     iii. g = 0,*v0 =*0, all else is arbitrary: The motion stays on a radial line. And,if the motion does not cross the origin, the motion is that of a harmonicoscillator (sinusoidal oscillations, check by plotting, say x vt t. [Why? Writethe EoM and EoMs in polar coordinates⇒ mr¨ = −k(r − L0) ⇒ the harmonic oscillator equation, mr¨∗ =−kr∗, where r∗ ≡ r − L0.

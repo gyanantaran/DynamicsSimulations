@@ -11,9 +11,9 @@ image: ../../media/problem02/problem02-shortest-distance-cover.png
 Assume that the positions relative to an origin of four random points, which are randomly located in space are given as $\vec{\mathbf{r}}_A$, $\vec{\mathbf{r}}_B$, $\vec{\mathbf{r}}_C$ and $\vec{\mathbf{r}}_D$. Assume force $\vec{\mathbf{F}}$ is given. For each problem below write a single vector formula (one for each problem) that answers the question.  
  
 1. The points A and B define an infinite line. So do the points C and D. Find the distance between these two lines. ‘The’ distance means ‘the minimum distance’, that is the length of the shortest line segment connecting the two lines. Either write a formula (or sequence of formulas), or write computer code that gives the answer, or both.  
-2. Same problem as above, but also find the end points of the shortest line segment.  
-3. Find the volume of the tetrahedron ABCD (you should reason-out and not quote any formulas for the volume of a tetrahedron, that is, see if you can derive the formula: ’volume = one third base times height’).  
-4. Assume points A, B and C are fixed to a structure. All three are connected, by massless rods, to a ball and socket at each end, to point D. At point D the force  F is applied. Find the tension in bar AD. Find a formula for the answer, or write computer code to find the answer, or both. The goal is to find a formula for the tension in terms of the positions and the force vector.
+1. Same problem as above, but also find the end points of the shortest line segment.  
+1. Find the volume of the tetrahedron ABCD (you should reason-out and not quote any formulas for the volume of a tetrahedron, that is, see if you can derive the formula: ’volume = one third base times height’).  
+1. Assume points A, B and C are fixed to a structure. All three are connected, by massless rods, to a ball and socket at each end, to point D. At point D the force  F is applied. Find the tension in bar AD. Find a formula for the answer, or write computer code to find the answer, or both. The goal is to find a formula for the tension in terms of the positions and the force vector.
 :::
 
 ## Write formula or code for the length of the shortest line segment

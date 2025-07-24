@@ -9,7 +9,7 @@ format:
         icon: github
         href: https://github.com/gyanantaran/DynamicsSimulations/
       - text: All Problems
-        icon: home
+        icon: house
         href: /content/DynamicsSimulations/
     comments:
       giscus:

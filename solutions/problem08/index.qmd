@@ -10,9 +10,9 @@ date: "2025/02/25"
 This is the simplest dynamics problem, but posed in polar coordinates. Assume a particle is on a plane with no force on it. So, you know it moves at constant speed in a constant direction.
 
 1. Write the differential equations $\vec{a} = \vec{0}$ in polar coordinates.
-2. Solve them numerically for various initial conditions.
-3. Plot the solution and check that the motion is a straight line at constant speed.
-4. Using your numerical result, pick a way to measure how straight the path is, and see how straight a line your polar coordinate solution gives. You should define a quantitative measure of straightness, and then measure it with your solution. e. Is the path more straight when you refine the numerical tolerances.
+1. Solve them numerically for various initial conditions.
+1. Plot the solution and check that the motion is a straight line at constant speed.
+1. Using your numerical result, pick a way to measure how straight the path is, and see how straight a line your polar coordinate solution gives. You should define a quantitative measure of straightness, and then measure it with your solution. e. Is the path more straight when you refine the numerical tolerances.
 :::
 
 ## Write differential equations in polar form

@@ -9,7 +9,7 @@ image: ../../media/problem04/problem04-dot_product_projection_unit_vector.png
 # 4\. **Cross product: geometry vs components.**  
 
 1. The geometric definition of crossproduct is this $\vec{a} \times \vec{b}$ is a vector $\vec{c}$ with magnitude $\|\vec{a}\|\|\vec{b}\|\sin\theta_{ab}$ that is orthmorogonal to $\vec{a}$ and $vec{b}$ in the direction given by the right hand rule. Use this definition to find an alternative geometric definition involving projection (namely: project $\vec{b}$ onto theplane that is orthogonal to $\vec{a}$; then stretch it by $\vec{|a|}$; then rotate it $\pi/2$ around the $\vec{a}$ axis). Use that definition to show the distributive rule $\vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$.  
-2. Then use the distributive rule to find the component formula for cross product,namely that $\vec{a} \times \vec{b} = (a_2 b_3 − a_3 b_2)\hat{e}_1 + (a_3 b_1 − a_1 b_3) \hat{e}_2 + (a_1 b_2 − a_2 b_1)\hat{e}_3$.  
+1. Then use the distributive rule to find the component formula for cross product,namely that $\vec{a} \times \vec{b} = (a_2 b_3 − a_3 b_2)\hat{e}_1 + (a_3 b_1 − a_1 b_3) \hat{e}_2 + (a_1 b_2 − a_2 b_1)\hat{e}_3$.  
 
 Note that, this distributive law implies that, for given $va \times \vec{v}$ is a linear operator.That is $va \times \vec{v}$ is a linear function fo $\vec{v}$. Later in the course we will use this to replacethe cross product with a tensor product. Hint: You can read about this in, say, theRuina/Pratap book (box 1.7).
 :::
