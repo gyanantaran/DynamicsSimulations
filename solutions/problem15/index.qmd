@@ -5,7 +5,7 @@ date: "2025/04/12"
 ---
 
 ::: {.callout collapse=true}
-15\. **Potential Energy.**
+# 15\. **Potential Energy.**
 
 For each of the force fields below, find the associated potential energy function. All of them are 3D. In some cases the energy is associated with the positions of two particles. Any free constant can be set to a convenient value (like zero). The answers are easy, it sometimes takes careful multi-variable calculus to find or check them.
 

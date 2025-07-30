@@ -7,10 +7,10 @@ format:
     other-links:
       - text: Repository
         icon: github
-        href: https://github.com/gyanantaran/DynamicsSimulations/
+        href: https://github.com/mangoqualitee/RuinaA2025DynSim/
       - text: All Problems
         icon: house
-        href: /content/DynamicsSimulations/
+        href: /reviews/RuinaA2025DynSim/
     comments:
       giscus:
-        repo: gyanantaran/DynamicsSimulations
+        repo: mangoqualitee/RuinaA2025DynSim
